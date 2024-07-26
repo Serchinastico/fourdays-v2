@@ -1,7 +1,7 @@
 {
-  "name": "fourdays-v2",
+  "name": "fourdays",
   "version": "1.0.0",
-  "main": "expo/AppEntry.js",
+  "main": "./src/index.ts",
   "scripts": {
     "lint": "run-s lint:expo lint:eslint",
     "lint:expo": "expo-doctor",

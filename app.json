@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "fourdays-v2",
-    "slug": "fourdays-v2",
+    "name": "fourdays",
+    "slug": "fourdays",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
