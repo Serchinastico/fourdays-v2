@@ -1,9 +1,13 @@
 module.exports = {
-  ignorePatterns: ['node_modules/*.js', 'android/*.js', 'ios/*.js'],
-  extends: ['universe/native', 'prettier', 'plugin:perfectionist/recommended-natural'],
-  plugins: ['prettier', 'perfectionist'],
+  extends: [
+    "universe/native",
+    "prettier",
+    "plugin:perfectionist/recommended-natural",
+  ],
+  ignorePatterns: ["node_modules/*.js", "android/*.js", "ios/*.js"],
+  plugins: ["prettier", "perfectionist", "lingui"],
   rules: {
-    'prettier/prettier': ['error'],
-    'perfectionist/sort-objects': ['error'],
+    "perfectionist/sort-objects": ["error"],
+    "prettier/prettier": ["error"],
   },
-}
+};

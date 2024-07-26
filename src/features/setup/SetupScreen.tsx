@@ -2,6 +2,7 @@ import { Header } from "@app/core/components/Header";
 import { Button, SafeAreaView } from "@madeja-studio/telar";
 import { ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { t } from "@lingui/macro";
 import tw from "twrnc";
 
 const SetupScreen = () => {
@@ -9,7 +10,7 @@ const SetupScreen = () => {
 
   return (
     <SafeAreaView style={tw`flex flex-1`}>
-      <Header title="Configuration">
+      <Header title={t`Configuration`}>
         <Button.Icon
           hasHapticFeedback
           icon={{ family: "Feather", name: "search" }}
@@ -43,7 +44,11 @@ const SetupScreen = () => {
       </ScrollView>
 
       <View style={[tw`absolute bottom-[${bottom}px] left-0 right-0`]}>
-        <Button hasHapticFeedback style={tw`self-center mb-4`} text="Accept" />
+        <Button
+          hasHapticFeedback
+          style={tw`self-center mb-4`}
+          text={t`Accept`}
+        />
       </View>
     </SafeAreaView>
   );
