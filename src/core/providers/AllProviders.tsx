@@ -8,7 +8,7 @@ interface Props extends PropsWithChildren {}
 
 const AllProviders = ({ children }: Props) => {
   return (
-    <TelarContextProvider>
+    <TelarContextProvider theme={{ core: { color: { primary: "#52BD76" } } }}>
       <PreloadScreen>
         <NavigationContainer>{children}</NavigationContainer>
       </PreloadScreen>
