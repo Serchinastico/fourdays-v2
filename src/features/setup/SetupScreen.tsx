@@ -1,34 +1,21 @@
-import { Header } from "@app/core/components/Header";
+import { t } from "@lingui/macro";
 import { Button, SafeAreaView } from "@madeja-studio/telar";
 import { ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { t } from "@lingui/macro";
 import tw from "twrnc";
+
+import Header from "./components/Header";
 
 const SetupScreen = () => {
   const { bottom } = useSafeAreaInsets();
 
   return (
     <SafeAreaView style={tw`flex flex-1`}>
-      <Header title={t`Configuration`}>
-        <Button.Icon
-          hasHapticFeedback
-          icon={{ family: "Feather", name: "search" }}
-          variant="text"
-        />
-
-        <Button.Icon
-          hasHapticFeedback
-          icon={{ family: "Feather", name: "plus" }}
-          variant="text"
-        />
-
-        <Button.Icon
-          hasHapticFeedback
-          icon={{ family: "Feather", name: "x" }}
-          variant="text"
-        />
-      </Header>
+      <Header
+        onAddPress={() => {}}
+        onClosePress={() => {}}
+        onSearchPress={() => {}}
+      />
 
       <ScrollView>
         <Text>Hola</Text>
