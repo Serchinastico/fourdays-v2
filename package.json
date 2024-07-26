@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {
-    "lint": "eslint \"**/*.{ts,tsx}\"",
-    "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+    "lint": "run-s lint:expo lint:eslint",
+    "lint:expo": "expo-doctor",
+    "lint:eslint": "eslint \"**/*.{ts,tsx}\" --fix",
+    "lint:eslint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "prepare": "lefthook install",
     "start": "expo start",
     "android": "expo start --android",
