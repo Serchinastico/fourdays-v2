@@ -1,6 +1,8 @@
 import { t } from "@lingui/macro";
+import { repeat } from "@madeja-studio/cepillo";
 import { Button, SafeAreaView } from "@madeja-studio/telar";
-import { ScrollView, Text, View } from "react-native";
+import { FlashList } from "@shopify/flash-list";
+import { Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "twrnc";
 
@@ -17,18 +19,14 @@ const SetupScreen = () => {
         onSearchPress={() => {}}
       />
 
-      <ScrollView>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-        <Text>Hola</Text>
-      </ScrollView>
+      <FlashList
+        data={repeat(10, (i) => `hola ${i}`)}
+        renderItem={({ item }) => (
+          <View style={tw`p-4`}>
+            <Text style={tw`text-xl`}>{item}</Text>
+          </View>
+        )}
+      />
 
       <View style={[tw`absolute bottom-[${bottom}px] left-0 right-0`]}>
         <Button
