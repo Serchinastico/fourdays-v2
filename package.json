@@ -18,10 +18,12 @@
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "expo": "~51.0.22",
+    "expo-splash-screen": "^0.27.5",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-native": "0.74.3",
-    "twrnc": "^4"
+    "twrnc": "^4",
+    "use-async-effect": "^2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
