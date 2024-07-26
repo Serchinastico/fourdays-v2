@@ -14,7 +14,9 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@madeja-studio/telar": "^0.2.9",
+    "@madeja-studio/telar": "^0.2.10",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/native-stack": "^6.11.0",
     "expo": "~51.0.22",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",

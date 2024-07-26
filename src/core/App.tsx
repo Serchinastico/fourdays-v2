@@ -1,12 +1,10 @@
-import { TelarContextProvider } from "@madeja-studio/telar";
-import { Text, View } from "react-native";
+import RootNavigation from "./navigation/RootNavigation";
+import AllProviders from "./providers/AllProviders";
 
 export default function App() {
   return (
-    <TelarContextProvider>
-      <View>
-        <Text>Hola</Text>
-      </View>
-    </TelarContextProvider>
+    <AllProviders>
+      <RootNavigation />
+    </AllProviders>
   );
 }
