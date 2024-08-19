@@ -1,20 +1,36 @@
-import { BASE_FOODS } from "@app/features/tracker/models/food";
+import {
+  BASE_FOOD_GROUPS,
+  BASE_FOODS,
+} from "@app/features/tracker/models/food";
+import { t } from "@lingui/macro";
+import { chunkify } from "@madeja-studio/cepillo";
 import { FlashList } from "@shopify/flash-list";
+import { useMemo } from "react";
 
-import Description from "./Description";
-import Header from "./Header";
-import Row from "./Row";
-import { Item } from "./types";
+import { Item } from "./item";
+import { FoodItem } from "./item/types";
 
 const FoodList = () => {
-  const items: Item[] = [
-    {
-      tag: "description",
-      text: "Deselect all the items you have food intolerance or causes you allergic reactions.",
-    },
-    { tag: "header", title: "Vegetables" },
-    { items: [BASE_FOODS[0], BASE_FOODS[6], BASE_FOODS[16]], tag: "row" },
-  ];
+  const items: FoodItem[] = useMemo(() => {
+    const foodGroups: FoodItem[] = BASE_FOOD_GROUPS.flatMap((group) => {
+      const header = { tag: "header" as const, title: group.name };
+      const groupFood = BASE_FOODS.filter((food) => food.groupId === group.id);
+      const rows = chunkify(groupFood, 3).map((foods) => ({
+        items: foods,
+        tag: "row" as const,
+      }));
+
+      return [header, ...rows];
+    });
+
+    return [
+      {
+        tag: "description",
+        text: t`Deselect all the items you have food intolerance or causes you allergic reactions.`,
+      },
+      ...foodGroups,
+    ];
+  }, []);
 
   return (
     <FlashList
@@ -23,11 +39,11 @@ const FoodList = () => {
       renderItem={({ item }) => {
         switch (item.tag) {
           case "description":
-            return <Description {...item} />;
+            return <Item.Description {...item} />;
           case "header":
-            return <Header {...item} />;
+            return <Item.Header {...item} />;
           case "row":
-            return <Row {...item} />;
+            return <Item.Row {...item} />;
         }
       }}
     />

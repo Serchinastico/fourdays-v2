@@ -13,7 +13,7 @@ export interface RowItem {
   items: Food[];
 }
 
-export type Item =
+export type FoodItem =
   | Tagged<"description", DescriptionItem>
   | Tagged<"header", HeaderItem>
   | Tagged<"row", RowItem>;

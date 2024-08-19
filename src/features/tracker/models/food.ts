@@ -1,5 +1,7 @@
 import { t } from "@lingui/macro";
 
+type GroupId = "Group 1" | "Group 2" | "Group 3" | "Group 4";
+
 export type Base64Image = string;
 
 export interface Base64FoodImage {
@@ -15,12 +17,12 @@ export interface RequireFoodImage {
 export type FoodImage = Base64FoodImage | RequireFoodImage;
 
 export interface FoodGroup {
-  id: string;
+  id: GroupId;
   name: string;
 }
 
 export interface Food {
-  groupId: string;
+  groupId: GroupId;
   id: string;
   image: FoodImage;
   name: string;

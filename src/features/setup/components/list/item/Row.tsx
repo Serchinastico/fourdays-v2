@@ -11,7 +11,7 @@ const Row = ({ items }: Props) => {
   const paddedItems = padArray(items, 3, null);
 
   return (
-    <RowLayout style={tw`px-4 justify-between`}>
+    <RowLayout style={tw`px-4 pb-4 justify-between`}>
       {paddedItems.map((food) => {
         if (food === null) {
           return <FoodItem.Empty />;

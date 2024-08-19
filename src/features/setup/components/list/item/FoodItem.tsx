@@ -35,7 +35,7 @@ const FoodItem = ({ food }: Props) => {
             },
           ]}
         />
-        <Text style={tw`text-base font-medium`}>{food.name}</Text>
+        <Text style={tw`text-base font-medium text-center`}>{food.name}</Text>
       </Column>
     </Button.Container>
   );
