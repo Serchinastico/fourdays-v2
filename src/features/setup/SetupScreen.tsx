@@ -1,12 +1,11 @@
 import { t } from "@lingui/macro";
-import { repeat } from "@madeja-studio/cepillo";
 import { Button, SafeAreaView } from "@madeja-studio/telar";
-import { FlashList } from "@shopify/flash-list";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "twrnc";
 
 import Header from "./components/Header";
+import FoodList from "./components/list/FoodList";
 
 const SetupScreen = () => {
   const { bottom } = useSafeAreaInsets();
@@ -19,15 +18,7 @@ const SetupScreen = () => {
         onSearchPress={() => {}}
       />
 
-      <FlashList
-        data={repeat(10, (i) => `hola ${i}`)}
-        estimatedItemSize={100}
-        renderItem={({ item }) => (
-          <View style={tw`p-4`}>
-            <Text style={tw`text-xl`}>{item}</Text>
-          </View>
-        )}
-      />
+      <FoodList />
 
       <View style={[tw`absolute bottom-[${bottom}px] left-0 right-0`]}>
         <Button
