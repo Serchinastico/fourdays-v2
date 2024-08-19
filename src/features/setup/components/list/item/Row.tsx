@@ -7,9 +7,10 @@ import { RowItem } from "./types";
 
 interface Props {
   item: RowItem;
+  onPress: (foodId: string) => void;
 }
 
-const Row = ({ item }: Props) => {
+const Row = ({ item, onPress }: Props) => {
   const paddedItems = padArray(item.items, 3, null);
 
   return (
@@ -18,7 +19,13 @@ const Row = ({ item }: Props) => {
         if (food === null) {
           return <FoodItem.Empty />;
         } else {
-          return <FoodItem food={food} key={food.id} />;
+          return (
+            <FoodItem
+              food={food}
+              key={food.id}
+              onPress={() => onPress(food.id)}
+            />
+          );
         }
       })}
     </RowLayout>

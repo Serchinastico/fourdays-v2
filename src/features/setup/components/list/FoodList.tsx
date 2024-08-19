@@ -4,21 +4,25 @@ import {
   GroupId,
 } from "@app/features/tracker/models/food";
 import { t } from "@lingui/macro";
-import { chunkify } from "@madeja-studio/cepillo";
+import { chunkify, toggleItem } from "@madeja-studio/cepillo";
 import { FlashList } from "@shopify/flash-list";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Item } from "./item";
-import { FoodItem } from "./item/types";
+import { FoodItem, HeaderItem } from "./item/types";
 
 const FoodList = () => {
+  const { bottom } = useSafeAreaInsets();
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
+  const [unselectedFoodIds, setUnselectedFoodIds] = useState<string[]>([]);
 
   const items: FoodItem[] = useMemo(() => {
     const foodGroups: FoodItem[] = BASE_FOOD_GROUPS.flatMap((group) => {
-      const header = {
+      const header: HeaderItem = {
         groupId: group.id,
-        tag: "header" as const,
+        isOpen: openedGroupIds.includes(group.id),
+        tag: "header",
         title: group.name,
       };
 
@@ -26,7 +30,13 @@ const FoodList = () => {
         return [header];
       }
 
-      const groupFood = BASE_FOODS.filter((food) => food.groupId === group.id);
+      const groupFood = BASE_FOODS.filter(
+        (food) => food.groupId === group.id
+      ).map((food) => ({
+        ...food,
+        isSelected: !unselectedFoodIds.includes(food.id),
+      }));
+
       const rows = chunkify(groupFood, 3).map((foods) => ({
         items: foods,
         tag: "row" as const,
@@ -42,20 +52,13 @@ const FoodList = () => {
       },
       ...foodGroups,
     ];
-  }, [openedGroupIds]);
-
-  const toggleOpenedGroupId = useCallback((groupId: GroupId) => {
-    setOpenedGroupIds((groupIds) => {
-      if (groupIds.includes(groupId)) {
-        return groupIds.filter((id) => id !== groupId);
-      } else {
-        return [...groupIds, groupId];
-      }
-    });
-  }, []);
+  }, [openedGroupIds, unselectedFoodIds]);
 
   return (
     <FlashList
+      contentContainerStyle={{
+        paddingBottom: bottom + 80 /* ~ the height of the accept button */,
+      }}
       data={items}
       estimatedItemSize={100}
       renderItem={({ item }) => {
@@ -65,10 +68,13 @@ const FoodList = () => {
           case "header":
             return (
               <Item.Header
-                isOpen={openedGroupIds.includes(item.groupId)}
                 item={item}
                 key={`header_${item.groupId}`}
-                onPress={() => toggleOpenedGroupId(item.groupId)}
+                onPress={() =>
+                  setOpenedGroupIds((groupIds) =>
+                    toggleItem(groupIds, item.groupId)
+                  )
+                }
               />
             );
           case "row":
@@ -76,6 +82,9 @@ const FoodList = () => {
               <Item.Row
                 item={item}
                 key={`row_${item.items.map((it) => it.name).join("_")}`}
+                onPress={(foodId) =>
+                  setUnselectedFoodIds((foodIds) => toggleItem(foodIds, foodId))
+                }
               />
             );
         }

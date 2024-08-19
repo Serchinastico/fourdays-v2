@@ -6,21 +6,20 @@ import tw from "twrnc";
 import { HeaderItem } from "./types";
 
 interface Props {
-  isOpen: boolean;
   item: HeaderItem;
   onPress: OnPress;
 }
 
-const Header = ({ isOpen, item, onPress }: Props) => {
+const Header = ({ item, onPress }: Props) => {
   return (
     <Button.Container hasHapticFeedback onPress={onPress}>
-      <Row style={tw`p-4 justify-between`}>
-        <Text style={tw`text-xl`}>{item.title}</Text>
+      <Row style={tw`p-4 mb-2 justify-between`}>
+        <Text style={tw`text-xl font-medium`}>{item.title}</Text>
 
         <VectorIcon
           icon={{
             family: "Feather",
-            name: isOpen ? "chevron-up" : "chevron-down",
+            name: item.isOpen ? "chevron-up" : "chevron-down",
           }}
           size={24}
           style={tw`px-2`}

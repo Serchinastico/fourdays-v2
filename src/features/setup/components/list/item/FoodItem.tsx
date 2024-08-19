@@ -1,10 +1,13 @@
-import { Food } from "@app/features/tracker/models/food";
 import { Button, Column, color } from "@madeja-studio/telar";
+import { OnPress } from "@madeja-studio/telar/lib/typescript/src/component/Button/press";
 import { Image, Text } from "react-native";
 import tw from "twrnc";
 
+import { RowItemFood } from "./types";
+
 interface Props {
-  food: Food;
+  food: RowItemFood;
+  onPress: OnPress;
 }
 
 const EmptyFoodItem = () => {
@@ -15,13 +18,14 @@ const EmptyFoodItem = () => {
   );
 };
 
-const FoodItem = ({ food }: Props) => {
+const FoodItem = ({ food, onPress }: Props) => {
   return (
-    <Button.Container hasHapticFeedback>
+    <Button.Container hasHapticFeedback onPress={onPress}>
       <Column
         style={[
           tw`p-2 rounded-lg shadow-black shadow-offset-0 shadow-opacity-10 shadow-radius-2 w-26 items-center`,
           { backgroundColor: color.white },
+          { opacity: food.isSelected ? 1 : 0.3 },
         ]}
       >
         <Image

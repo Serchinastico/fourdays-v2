@@ -20,7 +20,7 @@ const SetupScreen = () => {
 
       <FoodList />
 
-      <View style={[tw`absolute bottom-[${bottom}px] left-0 right-0`]}>
+      <View style={[tw`absolute bottom-[${bottom}px] self-center`]}>
         <Button
           hasHapticFeedback
           style={tw`self-center mb-4`}

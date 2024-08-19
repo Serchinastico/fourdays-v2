@@ -1,20 +1,29 @@
 import { Food, GroupId } from "@app/features/tracker/models/food";
 import { Tagged } from "@madeja-studio/cepillo";
 
-export interface DescriptionItem {
-  text: string;
-}
+export type DescriptionItem = Tagged<
+  "description",
+  {
+    text: string;
+  }
+>;
 
-export interface HeaderItem {
-  groupId: GroupId;
-  title: string;
-}
+export type HeaderItem = Tagged<
+  "header",
+  {
+    groupId: GroupId;
+    isOpen: boolean;
+    title: string;
+  }
+>;
 
-export interface RowItem {
-  items: Food[];
-}
+export type RowItemFood = { isSelected: boolean } & Food;
 
-export type FoodItem =
-  | Tagged<"description", DescriptionItem>
-  | Tagged<"header", HeaderItem>
-  | Tagged<"row", RowItem>;
+export type RowItem = Tagged<
+  "row",
+  {
+    items: RowItemFood[];
+  }
+>;
+
+export type FoodItem = DescriptionItem | HeaderItem | RowItem;
