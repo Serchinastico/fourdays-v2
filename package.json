@@ -18,17 +18,18 @@
     "@lingui/react": "^4",
     "@madeja-studio/cepillo": "^0.1.4",
     "@madeja-studio/telar": "^0.2.10",
+    "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/native": "^6",
     "@react-navigation/native-stack": "^6",
     "@shopify/flash-list": "^1",
     "expo": "~51.0.22",
     "expo-splash-screen": "^0.27.5",
     "expo-status-bar": "~1.12.1",
+    "jotai": "^2",
     "react": "18.2.0",
     "react-native": "0.74.3",
     "twrnc": "^4",
-    "use-async-effect": "^2",
-    "@react-native-async-storage/async-storage": "1.23.1"
+    "use-async-effect": "^2"
   },
   "devDependencies": {
     "@babel/core": "^7",

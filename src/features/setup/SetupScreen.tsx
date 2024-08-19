@@ -21,6 +21,7 @@ const SetupScreen = () => {
 
       <FlashList
         data={repeat(10, (i) => `hola ${i}`)}
+        estimatedItemSize={100}
         renderItem={({ item }) => (
           <View style={tw`p-4`}>
             <Text style={tw`text-xl`}>{item}</Text>
