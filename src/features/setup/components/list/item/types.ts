@@ -1,4 +1,4 @@
-import { Food } from "@app/features/tracker/models/food";
+import { Food, GroupId } from "@app/features/tracker/models/food";
 import { Tagged } from "@madeja-studio/cepillo";
 
 export interface DescriptionItem {
@@ -6,6 +6,7 @@ export interface DescriptionItem {
 }
 
 export interface HeaderItem {
+  groupId: GroupId;
   title: string;
 }
 

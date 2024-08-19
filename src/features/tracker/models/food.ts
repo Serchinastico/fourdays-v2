@@ -1,6 +1,6 @@
 import { t } from "@lingui/macro";
 
-type GroupId = "Group 1" | "Group 2" | "Group 3" | "Group 4";
+export type GroupId = "Group 1" | "Group 2" | "Group 3" | "Group 4";
 
 export type Base64Image = string;
 

@@ -5,10 +5,12 @@ import tw from "twrnc";
 import FoodItem from "./FoodItem";
 import { RowItem } from "./types";
 
-interface Props extends RowItem {}
+interface Props {
+  item: RowItem;
+}
 
-const Row = ({ items }: Props) => {
-  const paddedItems = padArray(items, 3, null);
+const Row = ({ item }: Props) => {
+  const paddedItems = padArray(item.items, 3, null);
 
   return (
     <RowLayout style={tw`px-4 pb-4 justify-between`}>

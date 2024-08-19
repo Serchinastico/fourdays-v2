@@ -4,11 +4,15 @@ import tw from "twrnc";
 
 import { DescriptionItem } from "./types";
 
-interface Props extends DescriptionItem {}
+interface Props {
+  item: DescriptionItem;
+}
 
-const Description = ({ text }: Props) => {
+const Description = ({ item }: Props) => {
   return (
-    <Text style={[tw`p-4 text-lg`, { color: color.warmGray[60] }]}>{text}</Text>
+    <Text style={[tw`p-4 text-lg`, { color: color.warmGray[60] }]}>
+      {item.text}
+    </Text>
   );
 };
 

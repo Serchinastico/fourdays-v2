@@ -1,5 +1,5 @@
 import { t } from "@lingui/macro";
-import { Button, SafeAreaView } from "@madeja-studio/telar";
+import { Button, SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "twrnc";
@@ -11,7 +11,7 @@ const SetupScreen = () => {
   const { bottom } = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={tw`flex flex-1`}>
+    <SafeAreaView edges={SafeAreaViewEdges.NoBottom} style={tw`flex`}>
       <Header
         onAddPress={() => {}}
         onClosePress={() => {}}
