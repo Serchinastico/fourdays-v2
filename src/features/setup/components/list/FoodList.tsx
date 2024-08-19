@@ -1,3 +1,4 @@
+import { atoms } from "@app/core/storage/state";
 import {
   BASE_FOOD_GROUPS,
   BASE_FOODS,
@@ -6,6 +7,7 @@ import {
 import { t } from "@lingui/macro";
 import { chunkify, toggleItem } from "@madeja-studio/cepillo";
 import { FlashList } from "@shopify/flash-list";
+import { useAtom } from "jotai";
 import { useMemo, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -15,7 +17,9 @@ import { FoodItem, HeaderItem } from "./item/types";
 const FoodList = () => {
   const { bottom } = useSafeAreaInsets();
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
-  const [unselectedFoodIds, setUnselectedFoodIds] = useState<string[]>([]);
+  const [forbiddenFoodIds, setUnselectedFoodIds] = useAtom(
+    atoms.forbiddenFoodIds
+  );
 
   const items: FoodItem[] = useMemo(() => {
     const foodGroups: FoodItem[] = BASE_FOOD_GROUPS.flatMap((group) => {
@@ -34,7 +38,7 @@ const FoodList = () => {
         (food) => food.groupId === group.id
       ).map((food) => ({
         ...food,
-        isSelected: !unselectedFoodIds.includes(food.id),
+        isSelected: !forbiddenFoodIds.includes(food.id),
       }));
 
       const rows = chunkify(groupFood, 3).map((foods) => ({
@@ -52,7 +56,7 @@ const FoodList = () => {
       },
       ...foodGroups,
     ];
-  }, [openedGroupIds, unselectedFoodIds]);
+  }, [openedGroupIds, forbiddenFoodIds]);
 
   return (
     <FlashList
@@ -83,7 +87,9 @@ const FoodList = () => {
                 item={item}
                 key={`row_${item.items.map((it) => it.name).join("_")}`}
                 onPress={(foodId) =>
-                  setUnselectedFoodIds((foodIds) => toggleItem(foodIds, foodId))
+                  setUnselectedFoodIds(async (foodIds) =>
+                    toggleItem(await foodIds, foodId)
+                  )
                 }
               />
             );
