@@ -4,12 +4,18 @@ import { Button } from "@madeja-studio/telar";
 import { OnPress } from "@madeja-studio/telar/lib/typescript/src/component/Button/press";
 
 interface Props {
+  isInitialSetup: boolean;
   onAddPress: OnPress;
-  onClosePress: OnPress;
+  onClosePress?: OnPress;
   onSearchPress: OnPress;
 }
 
-const Header = ({ onAddPress, onClosePress, onSearchPress }: Props) => {
+const Header = ({
+  isInitialSetup,
+  onAddPress,
+  onClosePress,
+  onSearchPress,
+}: Props) => {
   return (
     <GenericHeader title={t`Configuration`}>
       <Button.Icon
@@ -26,12 +32,14 @@ const Header = ({ onAddPress, onClosePress, onSearchPress }: Props) => {
         variant="text"
       />
 
-      <Button.Icon
-        hasHapticFeedback
-        icon={{ family: "Feather", name: "x" }}
-        onPress={onClosePress}
-        variant="text"
-      />
+      {!isInitialSetup && (
+        <Button.Icon
+          hasHapticFeedback
+          icon={{ family: "Feather", name: "x" }}
+          onPress={onClosePress}
+          variant="text"
+        />
+      )}
     </GenericHeader>
   );
 };

@@ -17,7 +17,7 @@ import { FoodItem, HeaderItem } from "./item/types";
 const FoodList = () => {
   const { bottom } = useSafeAreaInsets();
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
-  const [forbiddenFoodIds, setUnselectedFoodIds] = useAtom(
+  const [forbiddenFoodIds, setForbiddenFoodIds] = useAtom(
     atoms.forbiddenFoodIds
   );
 
@@ -87,7 +87,7 @@ const FoodList = () => {
                 item={item}
                 key={`row_${item.items.map((it) => it.name).join("_")}`}
                 onPress={(foodId) =>
-                  setUnselectedFoodIds(async (foodIds) =>
+                  setForbiddenFoodIds(async (foodIds) =>
                     toggleItem(await foodIds, foodId)
                   )
                 }
