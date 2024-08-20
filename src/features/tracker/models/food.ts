@@ -1,20 +1,26 @@
 import { t } from "@lingui/macro";
+import { Tagged } from "@madeja-studio/cepillo";
 
-export type GroupId = "Group 1" | "Group 2" | "Group 3" | "Group 4";
+export type GroupId =
+  | "Group 1"
+  | "Group 2"
+  | "Group 3"
+  | "Group 4"
+  | (object & string);
 
 export type Base64Image = string;
 
 export interface Base64FoodImage {
   data: { uri: string };
-  type: "Base64";
 }
 
 export interface RequireFoodImage {
   data: any;
-  type: "Require";
 }
 
-export type FoodImage = Base64FoodImage | RequireFoodImage;
+export type FoodImage =
+  | Tagged<"base64", Base64FoodImage>
+  | Tagged<"require", RequireFoodImage>;
 
 export interface FoodGroup {
   id: GroupId;
@@ -51,7 +57,7 @@ export const BASE_FOODS: Food[] = [
   {
     groupId: "Group 1",
     id: "chard",
-    image: { data: require("@assets/images/food/chard.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/chard.jpg"), tag: "require" },
     name: t`Chard`,
   },
   {
@@ -59,14 +65,14 @@ export const BASE_FOODS: Food[] = [
     id: "avocado",
     image: {
       data: require("@assets/images/food/avocado.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Avocado`,
   },
   {
     groupId: "Group 1",
     id: "garlic",
-    image: { data: require("@assets/images/food/garlic.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/garlic.jpg"), tag: "require" },
     name: t`Garlic`,
   },
   {
@@ -74,7 +80,7 @@ export const BASE_FOODS: Food[] = [
     id: "artichoke",
     image: {
       data: require("@assets/images/food/artichoke.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Artichoke`,
   },
@@ -83,14 +89,14 @@ export const BASE_FOODS: Food[] = [
     id: "alfalfa",
     image: {
       data: require("@assets/images/food/alfalfa.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Alfalfa`,
   },
   {
     groupId: "Group 3",
     id: "clams",
-    image: { data: require("@assets/images/food/clams.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/clams.jpg"), tag: "require" },
     name: t`Clams`,
   },
   {
@@ -98,32 +104,32 @@ export const BASE_FOODS: Food[] = [
     id: "blueberries",
     image: {
       data: require("@assets/images/food/blueberries.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Blueberries`,
   },
   {
     groupId: "Group 2",
     id: "rice",
-    image: { data: require("@assets/images/food/rice.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/rice.jpg"), tag: "require" },
     name: t`Rice`,
   },
   {
     groupId: "Group 3",
     id: "tuna",
-    image: { data: require("@assets/images/food/tuna.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/tuna.jpg"), tag: "require" },
     name: t`Tuna`,
   },
   {
     groupId: "Group 2",
     id: "oat",
-    image: { data: require("@assets/images/food/oat.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/oat.jpg"), tag: "require" },
     name: t`Oat`,
   },
   {
     groupId: "Group 3",
     id: "cod",
-    image: { data: require("@assets/images/food/cod.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/cod.jpg"), tag: "require" },
     name: t`Cod`,
   },
   {
@@ -131,7 +137,7 @@ export const BASE_FOODS: Food[] = [
     id: "sweet potato",
     image: {
       data: require("@assets/images/food/sweetPotato.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Sweet potato`,
   },
@@ -140,7 +146,7 @@ export const BASE_FOODS: Food[] = [
     id: "cockles",
     image: {
       data: require("@assets/images/food/cockles.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Cockles`,
   },
@@ -149,7 +155,7 @@ export const BASE_FOODS: Food[] = [
     id: "eggplant",
     image: {
       data: require("@assets/images/food/eggplant.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Eggplant`,
   },
@@ -158,7 +164,7 @@ export const BASE_FOODS: Food[] = [
     id: "watercress",
     image: {
       data: require("@assets/images/food/watercress.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Watercress`,
   },
@@ -167,7 +173,7 @@ export const BASE_FOODS: Food[] = [
     id: "anchovy",
     image: {
       data: require("@assets/images/food/anchovy.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Anchovy`,
   },
@@ -176,7 +182,7 @@ export const BASE_FOODS: Food[] = [
     id: "broccoli",
     image: {
       data: require("@assets/images/food/broccoli.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Broccoli`,
   },
@@ -185,7 +191,7 @@ export const BASE_FOODS: Food[] = [
     id: "zucchini",
     image: {
       data: require("@assets/images/food/zucchini.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Zucchini`,
   },
@@ -194,20 +200,20 @@ export const BASE_FOODS: Food[] = [
     id: "pumpkin",
     image: {
       data: require("@assets/images/food/pumpkin.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Pumpkin`,
   },
   {
     groupId: "Group 3",
     id: "crab",
-    image: { data: require("@assets/images/food/crab.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/crab.jpg"), tag: "require" },
     name: t`Crab`,
   },
   {
     groupId: "Group 3",
     id: "prawn",
-    image: { data: require("@assets/images/food/prawn.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/prawn.jpg"), tag: "require" },
     name: t`Prawn`,
   },
   {
@@ -215,14 +221,14 @@ export const BASE_FOODS: Food[] = [
     id: "thistle",
     image: {
       data: require("@assets/images/food/thistle.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Thistle`,
   },
   {
     groupId: "Group 1",
     id: "onion",
-    image: { data: require("@assets/images/food/onion.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/onion.jpg"), tag: "require" },
     name: t`Onion`,
   },
   {
@@ -230,26 +236,26 @@ export const BASE_FOODS: Food[] = [
     id: "spring onion",
     image: {
       data: require("@assets/images/food/springOnion.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Spring onion`,
   },
   {
     groupId: "Group 2",
     id: "rye",
-    image: { data: require("@assets/images/food/rye.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/rye.jpg"), tag: "require" },
     name: t`Rye`,
   },
   {
     groupId: "Group 3",
     id: "pork",
-    image: { data: require("@assets/images/food/pork.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/pork.jpg"), tag: "require" },
     name: t`Pork`,
   },
   {
     groupId: "Group 4",
     id: "cherry",
-    image: { data: require("@assets/images/food/cherry.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/cherry.jpg"), tag: "require" },
     name: t`Cherry`,
   },
   {
@@ -257,7 +263,7 @@ export const BASE_FOODS: Food[] = [
     id: "custard apple",
     image: {
       data: require("@assets/images/food/custardApple.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Custard apple`,
   },
@@ -266,14 +272,14 @@ export const BASE_FOODS: Food[] = [
     id: "mushroom",
     image: {
       data: require("@assets/images/food/mushroom.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Mushroom`,
   },
   {
     groupId: "Group 1",
     id: "carrot",
-    image: { data: require("@assets/images/food/carrot.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/carrot.jpg"), tag: "require" },
     name: t`Carrot`,
   },
   {
@@ -281,14 +287,14 @@ export const BASE_FOODS: Food[] = [
     id: "cabbage",
     image: {
       data: require("@assets/images/food/cabbage.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Cabbage`,
   },
   {
     groupId: "Group 4",
     id: "plum",
-    image: { data: require("@assets/images/food/plum.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/plum.jpg"), tag: "require" },
     name: t`Plum`,
   },
   {
@@ -296,14 +302,14 @@ export const BASE_FOODS: Food[] = [
     id: "brussels sprouts",
     image: {
       data: require("@assets/images/food/brusselsSprouts.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Brussels sprouts`,
   },
   {
     groupId: "Group 4",
     id: "medlar",
-    image: { data: require("@assets/images/food/medlar.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/medlar.jpg"), tag: "require" },
     name: t`Medlar`,
   },
   {
@@ -311,26 +317,26 @@ export const BASE_FOODS: Food[] = [
     id: "cauliflower",
     image: {
       data: require("@assets/images/food/cauliflower.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Cauliflower`,
   },
   {
     groupId: "Group 3",
     id: "rabbit",
-    image: { data: require("@assets/images/food/rabbit.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/rabbit.jpg"), tag: "require" },
     name: t`Rabbit`,
   },
   {
     groupId: "Group 3",
     id: "lamb",
-    image: { data: require("@assets/images/food/lamb.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/lamb.jpg"), tag: "require" },
     name: t`Lamb`,
   },
   {
     groupId: "Group 1",
     id: "endive",
-    image: { data: require("@assets/images/food/endive.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/endive.jpg"), tag: "require" },
     name: t`Endive`,
   },
   {
@@ -338,14 +344,14 @@ export const BASE_FOODS: Food[] = [
     id: "belgian endive",
     image: {
       data: require("@assets/images/food/belgianEndive.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Belgian endive`,
   },
   {
     groupId: "Group 4",
     id: "kiwi",
-    image: { data: require("@assets/images/food/kiwi.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/kiwi.jpg"), tag: "require" },
     name: t`Kiwi`,
   },
   {
@@ -353,7 +359,7 @@ export const BASE_FOODS: Food[] = [
     id: "asparagus",
     image: {
       data: require("@assets/images/food/asparagus.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Asparagus`,
   },
@@ -362,7 +368,7 @@ export const BASE_FOODS: Food[] = [
     id: "spinach",
     image: {
       data: require("@assets/images/food/spinach.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Spinach`,
   },
@@ -371,7 +377,7 @@ export const BASE_FOODS: Food[] = [
     id: "raspberry",
     image: {
       data: require("@assets/images/food/raspberry.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Raspberry`,
   },
@@ -380,7 +386,7 @@ export const BASE_FOODS: Food[] = [
     id: "strawberry",
     image: {
       data: require("@assets/images/food/strawberry.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Strawberry`,
   },
@@ -389,44 +395,44 @@ export const BASE_FOODS: Food[] = [
     id: "lettuce",
     image: {
       data: require("@assets/images/food/lettuce.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Lettuce`,
   },
   {
     groupId: "Group 1",
     id: "tomato",
-    image: { data: require("@assets/images/food/tomato.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/tomato.jpg"), tag: "require" },
     name: t`Tomato`,
   },
   {
     groupId: "Group 4",
     id: "grape",
-    image: { data: require("@assets/images/food/grape.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/grape.jpg"), tag: "require" },
     name: t`Grape`,
   },
   {
     groupId: "Group 3",
     id: "trout",
-    image: { data: require("@assets/images/food/trout.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/trout.jpg"), tag: "require" },
     name: t`Trout`,
   },
   {
     groupId: "Group 2",
     id: "wheat",
-    image: { data: require("@assets/images/food/wheat.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/wheat.jpg"), tag: "require" },
     name: t`Wheat`,
   },
   {
     groupId: "Group 3",
     id: "veal",
-    image: { data: require("@assets/images/food/veal.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/veal.jpg"), tag: "require" },
     name: t`Veal`,
   },
   {
     groupId: "Group 3",
     id: "sepia",
-    image: { data: require("@assets/images/food/sepia.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/sepia.jpg"), tag: "require" },
     name: t`Sepia`,
   },
   {
@@ -434,7 +440,7 @@ export const BASE_FOODS: Food[] = [
     id: "semolina",
     image: {
       data: require("@assets/images/food/semolina.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Semolina`,
   },
@@ -443,7 +449,7 @@ export const BASE_FOODS: Food[] = [
     id: "sardines",
     image: {
       data: require("@assets/images/food/sardines.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Sardines`,
   },
@@ -452,26 +458,26 @@ export const BASE_FOODS: Food[] = [
     id: "watermelon",
     image: {
       data: require("@assets/images/food/watermelon.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Watermelon`,
   },
   {
     groupId: "Group 3",
     id: "salmon",
-    image: { data: require("@assets/images/food/salmon.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/salmon.jpg"), tag: "require" },
     name: t`Salmon`,
   },
   {
     groupId: "Group 3",
     id: "turbot",
-    image: { data: require("@assets/images/food/turbot.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/turbot.jpg"), tag: "require" },
     name: t`Turbot`,
   },
   {
     groupId: "Group 1",
     id: "radish",
-    image: { data: require("@assets/images/food/radish.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/radish.jpg"), tag: "require" },
     name: t`Radish`,
   },
   {
@@ -479,14 +485,14 @@ export const BASE_FOODS: Food[] = [
     id: "octopus",
     image: {
       data: require("@assets/images/food/octopus.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Octopus`,
   },
   {
     groupId: "Group 1",
     id: "leek",
-    image: { data: require("@assets/images/food/leek.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/leek.jpg"), tag: "require" },
     name: t`Leek`,
   },
   {
@@ -494,20 +500,20 @@ export const BASE_FOODS: Food[] = [
     id: "grapefruit",
     image: {
       data: require("@assets/images/food/grapefruit.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Grapefruit`,
   },
   {
     groupId: "Group 4",
     id: "banana",
-    image: { data: require("@assets/images/food/banana.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/banana.jpg"), tag: "require" },
     name: t`Banana`,
   },
   {
     groupId: "Group 1",
     id: "pepper",
-    image: { data: require("@assets/images/food/pepper.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/pepper.jpg"), tag: "require" },
     name: t`Pepper`,
   },
   {
@@ -515,7 +521,7 @@ export const BASE_FOODS: Food[] = [
     id: "whiting",
     image: {
       data: require("@assets/images/food/whiting.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Whiting`,
   },
@@ -524,7 +530,7 @@ export const BASE_FOODS: Food[] = [
     id: "chicken",
     image: {
       data: require("@assets/images/food/chicken.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Chicken`,
   },
@@ -533,14 +539,14 @@ export const BASE_FOODS: Food[] = [
     id: "parsley",
     image: {
       data: require("@assets/images/food/parsley.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Parsley`,
   },
   {
     groupId: "Group 4",
     id: "pear",
-    image: { data: require("@assets/images/food/pear.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/pear.jpg"), tag: "require" },
     name: t`Pear`,
   },
   {
@@ -548,20 +554,20 @@ export const BASE_FOODS: Food[] = [
     id: "cucumber",
     image: {
       data: require("@assets/images/food/cucumber.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Cucumber`,
   },
   {
     groupId: "Group 3",
     id: "turkey",
-    image: { data: require("@assets/images/food/turkey.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/turkey.jpg"), tag: "require" },
     name: t`Turkey`,
   },
   {
     groupId: "Group 2",
     id: "potato",
-    image: { data: require("@assets/images/food/potato.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/potato.jpg"), tag: "require" },
     name: t`Potato`,
   },
   {
@@ -569,14 +575,14 @@ export const BASE_FOODS: Food[] = [
     id: "snapper",
     image: {
       data: require("@assets/images/food/snapper.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Snapper`,
   },
   {
     groupId: "Group 4",
     id: "açai",
-    image: { data: require("@assets/images/food/acai.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/acai.jpg"), tag: "require" },
     name: "Açai",
   },
   {
@@ -584,7 +590,7 @@ export const BASE_FOODS: Food[] = [
     id: "chickpeas",
     image: {
       data: require("@assets/images/food/chickpeas.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Chickpeas`,
   },
@@ -593,44 +599,44 @@ export const BASE_FOODS: Food[] = [
     id: "paraguayan",
     image: {
       data: require("@assets/images/food/paraguayan.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Paraguayan`,
   },
   {
     groupId: "Group 2",
     id: "yam",
-    image: { data: require("@assets/images/food/yam.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/yam.jpg"), tag: "require" },
     name: t`Yam`,
   },
   {
     groupId: "Group 3",
     id: "oyster",
-    image: { data: require("@assets/images/food/oyster.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/oyster.jpg"), tag: "require" },
     name: t`Oyster`,
   },
   {
     groupId: "Group 4",
     id: "orange",
-    image: { data: require("@assets/images/food/orange.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/orange.jpg"), tag: "require" },
     name: t`Orange`,
   },
   {
     groupId: "Group 1",
     id: "turnip",
-    image: { data: require("@assets/images/food/turnip.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/turnip.jpg"), tag: "require" },
     name: t`Turnip`,
   },
   {
     groupId: "Group 3",
     id: "hake",
-    image: { data: require("@assets/images/food/hake.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/hake.jpg"), tag: "require" },
     name: t`Hake`,
   },
   {
     groupId: "Group 4",
     id: "peach",
-    image: { data: require("@assets/images/food/peach.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/peach.jpg"), tag: "require" },
     name: t`Peach`,
   },
   {
@@ -638,32 +644,32 @@ export const BASE_FOODS: Food[] = [
     id: "cantaloupe",
     image: {
       data: require("@assets/images/food/cantaloupe.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Cantaloupe`,
   },
   {
     groupId: "Group 4",
     id: "apple",
-    image: { data: require("@assets/images/food/apple.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/apple.jpg"), tag: "require" },
     name: t`Apple`,
   },
   {
     groupId: "Group 4",
     id: "mango",
-    image: { data: require("@assets/images/food/mango.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/mango.jpg"), tag: "require" },
     name: t`Mango`,
   },
   {
     groupId: "Group 2",
     id: "corn",
-    image: { data: require("@assets/images/food/corn.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/corn.jpg"), tag: "require" },
     name: t`Corn`,
   },
   {
     groupId: "Group 2",
     id: "beans",
-    image: { data: require("@assets/images/food/beans.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/beans.jpg"), tag: "require" },
     name: t`Beans`,
   },
   {
@@ -671,7 +677,7 @@ export const BASE_FOODS: Food[] = [
     id: "whiteBeans",
     image: {
       data: require("@assets/images/food/whiteBeans.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`White beans`,
   },
@@ -680,7 +686,7 @@ export const BASE_FOODS: Food[] = [
     id: "yellowBeans",
     image: {
       data: require("@assets/images/food/yellowBeans.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Yellow beans`,
   },
@@ -689,20 +695,20 @@ export const BASE_FOODS: Food[] = [
     id: "cranberryBeans",
     image: {
       data: require("@assets/images/food/cranberryBeans.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Cranberry beans`,
   },
   {
     groupId: "Group 4",
     id: "lemon",
-    image: { data: require("@assets/images/food/lemon.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/lemon.jpg"), tag: "require" },
     name: t`Lemon`,
   },
   {
     groupId: "Group 4",
     id: "lime",
-    image: { data: require("@assets/images/food/lime.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/lime.jpg"), tag: "require" },
     name: t`Lime`,
   },
   {
@@ -710,14 +716,14 @@ export const BASE_FOODS: Food[] = [
     id: "lobster",
     image: {
       data: require("@assets/images/food/lobster.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Lobster`,
   },
   {
     groupId: "Group 2",
     id: "peas",
-    image: { data: require("@assets/images/food/peas.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/peas.jpg"), tag: "require" },
     name: t`Peas`,
   },
   {
@@ -725,14 +731,14 @@ export const BASE_FOODS: Food[] = [
     id: "lentils",
     image: {
       data: require("@assets/images/food/lentils.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Lentils`,
   },
   {
     groupId: "Group 3",
     id: "sole",
-    image: { data: require("@assets/images/food/sole.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/sole.jpg"), tag: "require" },
     name: t`Sole`,
   },
   {
@@ -740,7 +746,7 @@ export const BASE_FOODS: Food[] = [
     id: "green beans",
     image: {
       data: require("@assets/images/food/greenBeans.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Green beans`,
   },
@@ -749,14 +755,14 @@ export const BASE_FOODS: Food[] = [
     id: "wholemeal bread",
     image: {
       data: require("@assets/images/food/wholemealBread.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Wholemeal bread`,
   },
   {
     groupId: "Group 2",
     id: "soy",
-    image: { data: require("@assets/images/food/soy.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/soy.jpg"), tag: "require" },
     name: t`Soy`,
   },
   {
@@ -764,7 +770,7 @@ export const BASE_FOODS: Food[] = [
     id: "spelled wheat",
     image: {
       data: require("@assets/images/food/spelledWheat.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Spelled wheat`,
   },
@@ -773,14 +779,14 @@ export const BASE_FOODS: Food[] = [
     id: "italian pasta",
     image: {
       data: require("@assets/images/food/italianPasta.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Italian pasta`,
   },
   {
     groupId: "Group 3",
     id: "bass",
-    image: { data: require("@assets/images/food/bass.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/bass.jpg"), tag: "require" },
     name: t`Bass`,
   },
   {
@@ -788,20 +794,20 @@ export const BASE_FOODS: Food[] = [
     id: "gilt-head seabream",
     image: {
       data: require("@assets/images/food/giltHeadSeabream.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Gilt-Head seabream`,
   },
   {
     groupId: "Group 3",
     id: "squid",
-    image: { data: require("@assets/images/food/squid.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/squid.jpg"), tag: "require" },
     name: t`Squid`,
   },
   {
     groupId: "Group 3",
     id: "egg",
-    image: { data: require("@assets/images/food/egg.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/egg.jpg"), tag: "require" },
     name: t`Egg`,
   },
   {
@@ -809,20 +815,20 @@ export const BASE_FOODS: Food[] = [
     id: "scallops",
     image: {
       data: require("@assets/images/food/scallops.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Scallops`,
   },
   {
     groupId: "Group 3",
     id: "cheese",
-    image: { data: require("@assets/images/food/cheese.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/cheese.jpg"), tag: "require" },
     name: t`Cheese`,
   },
   {
     groupId: "Group 3",
     id: "yogurt",
-    image: { data: require("@assets/images/food/yogurt.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/yogurt.jpg"), tag: "require" },
     name: t`Yogurt`,
   },
   {
@@ -830,7 +836,7 @@ export const BASE_FOODS: Food[] = [
     id: "pineapple",
     image: {
       data: require("@assets/images/food/pineapple.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Pineapple`,
   },
@@ -839,14 +845,14 @@ export const BASE_FOODS: Food[] = [
     id: "apricot",
     image: {
       data: require("@assets/images/food/apricot.jpg"),
-      type: "Require",
+      tag: "require",
     },
     name: t`Apricot`,
   },
   {
     groupId: "Group 4",
     id: "papaya",
-    image: { data: require("@assets/images/food/papaya.jpg"), type: "Require" },
+    image: { data: require("@assets/images/food/papaya.jpg"), tag: "require" },
     name: t`Papaya`,
   },
 ];

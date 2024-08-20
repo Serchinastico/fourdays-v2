@@ -16,9 +16,10 @@
   },
   "dependencies": {
     "@lingui/react": "^4",
-    "@madeja-studio/cepillo": "^0.1.9",
-    "@madeja-studio/telar": "^0.2.16",
+    "@madeja-studio/cepillo": "^0.1.10",
+    "@madeja-studio/telar": "^0.2.18",
     "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-picker/picker": "^2",
     "@react-navigation/native": "^6",
     "@react-navigation/native-stack": "^6",
     "@shopify/flash-list": "^1",

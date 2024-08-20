@@ -18,10 +18,10 @@ const SetupScreen = ({ navigation, route }: Props) => {
   const { bottom } = useSafeAreaInsets();
 
   return (
-    <SafeAreaView edges={SafeAreaViewEdges.NoBottom} style={tw`flex`}>
+    <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
       <Header
         isInitialSetup={isInitialSetup}
-        onAddPress={() => {}}
+        onAddPress={() => navigation.navigate("addFood")}
         onClosePress={() => navigation.goBack()}
         onSearchPress={() => {}}
       />
