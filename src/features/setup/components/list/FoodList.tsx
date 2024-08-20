@@ -1,62 +1,12 @@
-import { atoms } from "@app/core/storage/state";
-import {
-  BASE_FOOD_GROUPS,
-  BASE_FOODS,
-  GroupId,
-} from "@app/features/tracker/models/food";
-import { t } from "@lingui/macro";
-import { chunkify, toggleItem } from "@madeja-studio/cepillo";
+import useFoodItems from "@app/features/setup/hooks/useFoodItems";
 import { FlashList } from "@shopify/flash-list";
-import { useAtom } from "jotai";
-import { useMemo, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Item } from "./item";
-import { FoodItem, HeaderItem } from "./item/types";
 
 const FoodList = () => {
   const { bottom } = useSafeAreaInsets();
-  const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
-  const [forbiddenFoodIds, setForbiddenFoodIds] = useAtom(
-    atoms.forbiddenFoodIds
-  );
-
-  const items: FoodItem[] = useMemo(() => {
-    const foodGroups: FoodItem[] = BASE_FOOD_GROUPS.flatMap((group) => {
-      const header: HeaderItem = {
-        groupId: group.id,
-        isOpen: openedGroupIds.includes(group.id),
-        tag: "header",
-        title: group.name,
-      };
-
-      if (!openedGroupIds.includes(group.id)) {
-        return [header];
-      }
-
-      const groupFood = BASE_FOODS.filter(
-        (food) => food.groupId === group.id
-      ).map((food) => ({
-        ...food,
-        isSelected: !forbiddenFoodIds.includes(food.id),
-      }));
-
-      const rows = chunkify(groupFood, 3).map((foods) => ({
-        items: foods,
-        tag: "row" as const,
-      }));
-
-      return [header, ...rows];
-    });
-
-    return [
-      {
-        tag: "description",
-        text: t`Deselect all the items you have food intolerance or causes you allergic reactions.`,
-      },
-      ...foodGroups,
-    ];
-  }, [openedGroupIds, forbiddenFoodIds]);
+  const { items, toggleForbiddenFoodId, toggleOpenedGroupId } = useFoodItems();
 
   return (
     <FlashList
@@ -74,11 +24,7 @@ const FoodList = () => {
               <Item.Header
                 item={item}
                 key={`header_${item.groupId}`}
-                onPress={() =>
-                  setOpenedGroupIds((groupIds) =>
-                    toggleItem(groupIds, item.groupId)
-                  )
-                }
+                onPress={() => toggleOpenedGroupId(item.groupId)}
               />
             );
           case "row":
@@ -86,11 +32,7 @@ const FoodList = () => {
               <Item.Row
                 item={item}
                 key={`row_${item.items.map((it) => it.name).join("_")}`}
-                onPress={(foodId) =>
-                  setForbiddenFoodIds(async (foodIds) =>
-                    toggleItem(await foodIds, foodId)
-                  )
-                }
+                onPress={(foodId) => toggleForbiddenFoodId(foodId)}
               />
             );
         }

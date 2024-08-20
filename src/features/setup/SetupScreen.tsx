@@ -22,7 +22,7 @@ const SetupScreen = ({ navigation, route }: Props) => {
       <Header
         isInitialSetup={isInitialSetup}
         onAddPress={() => {}}
-        onClosePress={() => {}}
+        onClosePress={() => navigation.goBack()}
         onSearchPress={() => {}}
       />
 
