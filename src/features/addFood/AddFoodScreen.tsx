@@ -1,6 +1,13 @@
+import ImagePickerDialog from "@app/core/components/ImagePicker/ImagePickerDialog";
+import useImagePicker, {
+  ImagePickerResult,
+} from "@app/core/hooks/useImagePicker";
 import { RootNavigationParamList } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
-import { BASE_FOOD_GROUPS } from "@app/features/tracker/models/food";
+import {
+  BASE_FOOD_GROUPS,
+  Base64FoodImage,
+} from "@app/features/tracker/models/food";
 import { t } from "@lingui/macro";
 import { randomString } from "@madeja-studio/cepillo";
 import {
@@ -16,11 +23,29 @@ import { Picker } from "@react-native-picker/picker";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Image, Text, TextInput, View } from "react-native";
 import tw from "twrnc";
 
 import Header from "./components/Header";
 import InputContainer from "./components/InputContainer";
+
+const FOOD_ADDED_TOAST = {
+  subtitle: t`You have added a new food item to your collection`,
+  title: t`Food created`,
+  variant: "success" as const,
+};
+
+const NO_PERMISSIONS_TOAST = {
+  subtitle: t`Fourdays has no permissions to access your pictures`,
+  title: t`Unable to pick an image`,
+  variant: "error" as const,
+};
+
+const CAMERA_UNAVAILABLE_TOAST = {
+  subtitle: t`Camera is unavailable in this device`,
+  title: t`Unable to pick an image`,
+  variant: "error" as const,
+};
 
 interface Props
   extends NativeStackScreenProps<RootNavigationParamList, "addFood"> {}
@@ -29,6 +54,10 @@ const AddFoodScreen = ({ navigation }: Props) => {
   const setCustomFoodList = useSetAtom(atoms.customFoodList);
   const [groupId, setGroupId] = useState(BASE_FOOD_GROUPS[0].id);
   const [name, setName] = useState<string>("");
+  const [image, setImage] = useState<Base64FoodImage | null>(null);
+  const [isImagePickerDialogVisible, setIsImagePickerDialogVisible] =
+    useState(false);
+  const { getImageFrom } = useImagePicker();
   const { showToast } = useToast();
 
   const onAddFoodPress = useCallback(async () => {
@@ -37,19 +66,41 @@ const AddFoodScreen = ({ navigation }: Props) => {
       {
         groupId,
         id: randomString(),
-        image: { data: "", tag: "require" as const },
+        image: { tag: "base64" as const, ...image! },
         name,
       },
     ]);
-    showToast({
-      subtitle: t`You have added a new food item to your collection`,
-      title: t`Food created`,
-      variant: "success",
-    });
+    showToast(FOOD_ADDED_TOAST);
     navigation.goBack();
   }, [name, groupId]);
 
+  const onImageSelect = useCallback(
+    async (promise: Promise<ImagePickerResult>) => {
+      setIsImagePickerDialogVisible(false);
+      const result = await promise;
+
+      switch (result.tag) {
+        case "error":
+          switch (result.code) {
+            case "access_denied":
+              showToast(NO_PERMISSIONS_TOAST);
+              break;
+            case "camera_unavailable": {
+              showToast(CAMERA_UNAVAILABLE_TOAST);
+            }
+          }
+          break;
+        case "success":
+          setImage({
+            data: { uri: `data:image/png;base64,${result.asset.base64}` },
+          });
+      }
+    },
+    []
+  );
+
   const isNameDefined = name.trim().length > 0;
+  const isImageDefined = image !== null;
 
   return (
     <SafeAreaView>
@@ -90,24 +141,46 @@ const AddFoodScreen = ({ navigation }: Props) => {
           <View style={tw`flex-1 items-center justify-center`}>
             <Button.Container
               hasHapticFeedback
+              onPress={() => setIsImagePickerDialogVisible(true)}
               style={[
                 tw`p-2 self-center rounded-lg shadow-black shadow-offset-0 shadow-opacity-10 shadow-radius-2`,
                 { backgroundColor: color.white },
               ]}
             >
               <Column style={tw`items-center`}>
-                <View
-                  style={[
-                    tw`justify-center items-center border-dashed border rounded-lg w-32 h-32`,
-                    { borderColor: color.warmGray[50] },
-                  ]}
-                >
-                  <VectorIcon
-                    color={color.warmGray[50]}
-                    icon={{ family: "Feather", name: "plus" }}
-                    size={48}
-                  />
-                </View>
+                {image ? (
+                  <View
+                    style={[
+                      tw`justify-center items-center rounded-lg w-32 h-32`,
+                      { borderColor: color.warmGray[50] },
+                    ]}
+                  >
+                    <Image
+                      source={{ uri: image.data.uri }}
+                      style={[
+                        tw`aspect-square rounded-md`,
+                        {
+                          height: undefined,
+                          resizeMode: "cover",
+                          width: "100%",
+                        },
+                      ]}
+                    />
+                  </View>
+                ) : (
+                  <View
+                    style={[
+                      tw`justify-center items-center border-dashed border rounded-lg w-32 h-32`,
+                      { borderColor: color.warmGray[50] },
+                    ]}
+                  >
+                    <VectorIcon
+                      color={color.warmGray[50]}
+                      icon={{ family: "Feather", name: "plus" }}
+                      size={48}
+                    />
+                  </View>
+                )}
 
                 <Text
                   ellipsizeMode="tail"
@@ -126,12 +199,23 @@ const AddFoodScreen = ({ navigation }: Props) => {
 
         <Button
           hasHapticFeedback
-          isDisabled={!isNameDefined}
+          isDisabled={!isNameDefined || !isImageDefined}
           onPress={onAddFoodPress}
           style={tw`self-center mb-4`}
           text={t`Add`}
         />
       </Column>
+
+      <ImagePickerDialog
+        isVisible={isImagePickerDialogVisible}
+        onClose={() => setIsImagePickerDialogVisible(false)}
+        onFromCamera={() =>
+          onImageSelect(getImageFrom("camera", { base64: true, quality: 0.1 }))
+        }
+        onFromLibrary={() =>
+          onImageSelect(getImageFrom("media_library", { base64: true }))
+        }
+      />
     </SafeAreaView>
   );
 };

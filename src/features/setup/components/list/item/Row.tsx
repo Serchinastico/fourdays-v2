@@ -15,9 +15,9 @@ const Row = ({ item, onPress }: Props) => {
 
   return (
     <RowLayout style={tw`px-4 pb-4 justify-between`}>
-      {paddedItems.map((food) => {
+      {paddedItems.map((food, index) => {
         if (food === null) {
-          return <FoodItem.Empty />;
+          return <FoodItem.Empty key={`empty_${index}`} />;
         } else {
           return (
             <FoodItem

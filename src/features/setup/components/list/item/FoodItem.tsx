@@ -1,5 +1,4 @@
-import { Button, Column, color } from "@madeja-studio/telar";
-import { OnPress } from "@madeja-studio/telar/lib/typescript/src/component/Button/press";
+import { Button, Column, type OnPress, color } from "@madeja-studio/telar";
 import { Image, Text } from "react-native";
 import tw from "twrnc";
 
@@ -31,7 +30,7 @@ const FoodItem = ({ food, onPress }: Props) => {
         <Image
           source={food.image.data}
           style={[
-            tw`aspect-square`,
+            tw`aspect-square rounded-md`,
             {
               height: undefined,
               resizeMode: "cover",

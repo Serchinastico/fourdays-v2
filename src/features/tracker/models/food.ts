@@ -11,7 +11,7 @@ export type GroupId =
 export type Base64Image = string;
 
 export interface Base64FoodImage {
-  data: { uri: string };
+  data: { uri: `data:image/png;base64,${string}` };
 }
 
 export interface RequireFoodImage {

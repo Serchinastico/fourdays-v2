@@ -1,5 +1,4 @@
-import { Button, Row, VectorIcon } from "@madeja-studio/telar";
-import { OnPress } from "@madeja-studio/telar/lib/typescript/src/component/Button/press";
+import { Button, type OnPress, Row, VectorIcon } from "@madeja-studio/telar";
 import { Text } from "react-native";
 import tw from "twrnc";
 

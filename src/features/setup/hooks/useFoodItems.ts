@@ -6,7 +6,7 @@ import {
 } from "@app/features/tracker/models/food";
 import { t } from "@lingui/macro";
 import { chunkify, toggleItem } from "@madeja-studio/cepillo";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { useCallback, useMemo, useState } from "react";
 
 import { FoodItem, HeaderItem } from "../components/list/item/types";
@@ -16,8 +16,11 @@ const useFoodItems = () => {
   const [forbiddenFoodIds, setForbiddenFoodIds] = useAtom(
     atoms.forbiddenFoodIds
   );
+  const customFood = useAtomValue(atoms.customFoodList);
 
   const items: FoodItem[] = useMemo(() => {
+    const allFood = [...BASE_FOODS, ...customFood];
+
     const foodGroups: FoodItem[] = BASE_FOOD_GROUPS.flatMap((group) => {
       const header: HeaderItem = {
         groupId: group.id,
@@ -30,12 +33,12 @@ const useFoodItems = () => {
         return [header];
       }
 
-      const groupFood = BASE_FOODS.filter(
-        (food) => food.groupId === group.id
-      ).map((food) => ({
-        ...food,
-        isSelected: !forbiddenFoodIds.includes(food.id),
-      }));
+      const groupFood = allFood
+        .filter((food) => food.groupId === group.id)
+        .map((food) => ({
+          ...food,
+          isSelected: !forbiddenFoodIds.includes(food.id),
+        }));
 
       const rows = chunkify(groupFood, 3).map((foods) => ({
         items: foods,

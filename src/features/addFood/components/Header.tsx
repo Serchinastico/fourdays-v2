@@ -1,7 +1,6 @@
 import { Header as GenericHeader } from "@app/core/components/Header";
 import { t } from "@lingui/macro";
-import { Button } from "@madeja-studio/telar";
-import { OnPress } from "@madeja-studio/telar/lib/typescript/src/component/Button/press";
+import { Button, type OnPress } from "@madeja-studio/telar";
 
 interface Props {
   onClosePress: OnPress;
