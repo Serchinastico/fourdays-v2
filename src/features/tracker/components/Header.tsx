@@ -12,6 +12,7 @@ const Header = ({ onSearchPress, onSettingsPress, onSharePress }: Props) => {
   return (
     <GenericHeader hideSeparator title={t`Tracker`}>
       <Button.Icon
+        color="secondary"
         hasHapticFeedback
         icon={{ family: "Feather", name: "search" }}
         onPress={onSearchPress}
@@ -19,6 +20,7 @@ const Header = ({ onSearchPress, onSettingsPress, onSharePress }: Props) => {
       />
 
       <Button.Icon
+        color="secondary"
         hasHapticFeedback
         icon={{ family: "Feather", name: "settings" }}
         onPress={onSettingsPress}
@@ -26,6 +28,7 @@ const Header = ({ onSearchPress, onSettingsPress, onSharePress }: Props) => {
       />
 
       <Button.Icon
+        color="secondary"
         hasHapticFeedback
         icon={{ family: "Feather", name: "share-2" }}
         onPress={onSharePress}

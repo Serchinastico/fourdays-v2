@@ -18,6 +18,7 @@ const Header = ({
   return (
     <GenericHeader title={t`Configuration`}>
       <Button.Icon
+        color="secondary"
         hasHapticFeedback
         icon={{ family: "Feather", name: "search" }}
         onPress={onSearchPress}
@@ -25,6 +26,7 @@ const Header = ({
       />
 
       <Button.Icon
+        color="secondary"
         hasHapticFeedback
         icon={{ family: "Feather", name: "plus" }}
         onPress={onAddPress}
@@ -33,6 +35,7 @@ const Header = ({
 
       {!isInitialSetup && (
         <Button.Icon
+          color="secondary"
           hasHapticFeedback
           icon={{ family: "Feather", name: "x" }}
           onPress={onClosePress}
