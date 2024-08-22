@@ -1,6 +1,6 @@
 import { RootNavigationParamList } from "@app/core/navigation/routes";
-import { FoodList } from "@app/domain/food/components/FoodList";
-import { FoodItem } from "@app/domain/food/components/FoodList/item/types";
+import { FoodList } from "@app/ui/FoodList";
+import { FoodItem } from "@app/ui/FoodList/item/types";
 import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import dayjs from "dayjs";

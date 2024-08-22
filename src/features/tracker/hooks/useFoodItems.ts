@@ -3,11 +3,10 @@ import {
   FoodItem,
   GroupItem,
   SelectableFood,
-} from "@app/domain/food/components/FoodList/item/types";
+} from "@app/ui/FoodList/item/types";
 import { useFood } from "@app/domain/food/hooks/useFood";
 import { useFoodGroup } from "@app/domain/food/hooks/useFoodGroup";
 import { GroupId } from "@app/domain/food/models/food";
-import { foodToFoodRow } from "@app/domain/food/utils/foodItems";
 import { t } from "@lingui/macro";
 import { toggleItem } from "@madeja-studio/cepillo";
 import dayjs from "dayjs";
@@ -15,6 +14,7 @@ import { useAtomValue } from "jotai";
 import { useCallback, useMemo, useState } from "react";
 
 import useConsumedFood from "./useConsumedFood";
+import { selectableFoodToFoodRows } from "@app/ui/FoodList/foodItems";
 
 const FORBIDDEN_FOOD_GROUP_ID = "forbidden_food";
 const CONSUMED_FOOD_GROUP_ID = "consumed_food";
@@ -60,7 +60,7 @@ const useFoodItems = ({ date }: Props) => {
       .map((id) => allFood.find((food) => food.id === id)!)
       .map((food) => ({ ...food, isSelected: true }));
 
-    return [header, ...foodToFoodRow(forbiddenFood)];
+    return [header, ...selectableFoodToFoodRows(forbiddenFood)];
   }, [openedGroupIds, allFood, forbiddenFoodIds]);
 
   const consumedFoodItems: FoodItem[] = useMemo(() => {
@@ -79,7 +79,7 @@ const useFoodItems = ({ date }: Props) => {
       .map((id) => allFood.find((food) => food.id === id)!)
       .map((food) => ({ ...food, isSelected: true }));
 
-    return [header, ...foodToFoodRow(consumedFood)];
+    return [header, ...selectableFoodToFoodRows(consumedFood)];
   }, [openedGroupIds, allFood, consumedFoodIdsOnDate]);
 
   const items: FoodItem[] = useMemo(() => {
@@ -101,7 +101,7 @@ const useFoodItems = ({ date }: Props) => {
         .filter((food) => !forbiddenFoodIds.has(food.id))
         .map((food) => ({ ...food, isSelected: true }));
 
-      return [header, ...foodToFoodRow(groupFood)];
+      return [header, ...selectableFoodToFoodRows(groupFood)];
     });
 
     return [
