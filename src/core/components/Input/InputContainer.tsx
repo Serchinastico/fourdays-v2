@@ -1,7 +1,6 @@
 import { Column } from "@madeja-studio/telar";
 import { PropsWithChildren } from "react";
 import { Text } from "react-native";
-import tw from "twrnc";
 
 interface Props extends PropsWithChildren {
   label: string;

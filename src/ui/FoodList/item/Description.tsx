@@ -1,6 +1,5 @@
 import { color } from "@madeja-studio/telar";
 import { Text } from "react-native";
-import tw from "twrnc";
 
 import { DescriptionItem } from "./types";
 

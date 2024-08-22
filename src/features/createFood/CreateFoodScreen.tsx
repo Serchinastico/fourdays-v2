@@ -27,7 +27,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
 import { Image, Text, TextInput, View } from "react-native";
-import tw from "twrnc";
 
 const FOOD_ADDED_TOAST = {
   subtitle: t`You have added a new food item to your collection`,

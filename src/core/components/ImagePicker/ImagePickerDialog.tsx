@@ -2,7 +2,6 @@ import { t } from "@lingui/macro";
 import { Button, Column, Dialog, type OnPress } from "@madeja-studio/telar";
 import { ComponentProps } from "react";
 import { Text } from "react-native";
-import tw from "twrnc";
 
 interface Props extends ComponentProps<typeof Dialog> {
   onFromCamera: OnPress;

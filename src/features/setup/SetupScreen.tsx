@@ -7,7 +7,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useCallback } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import tw from "twrnc";
 
 import Header from "./components/Header";
 import useFoodItems from "./hooks/useFoodItems";

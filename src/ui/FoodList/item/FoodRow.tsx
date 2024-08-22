@@ -1,6 +1,5 @@
 import { padArray } from "@madeja-studio/cepillo";
 import { Row as RowLayout } from "@madeja-studio/telar";
-import tw from "twrnc";
 
 import FoodItem from "./FoodItem";
 import { FoodRowItem } from "./types";

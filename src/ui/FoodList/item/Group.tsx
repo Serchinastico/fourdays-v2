@@ -1,6 +1,5 @@
 import { Button, type OnPress, Row, VectorIcon } from "@madeja-studio/telar";
 import { Text } from "react-native";
-import tw from "twrnc";
 
 import { GroupItem } from "./types";
 

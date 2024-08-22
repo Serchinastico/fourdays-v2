@@ -1,13 +1,13 @@
 import { Column, Row, Separator } from "@madeja-studio/telar";
 import { PropsWithChildren } from "react";
 import { Text, ViewProps } from "react-native";
-import tw from "twrnc";
 
 interface Props extends PropsWithChildren<ViewProps> {
   title: string;
+  hideSeparator?: boolean;
 }
 
-export const Header = ({ children, title, ...props }: Props) => {
+export const Header = ({ children, title, hideSeparator, ...props }: Props) => {
   return (
     <Column {...props}>
       <Row style={tw`items-center justify-between px-4 pt-2 pb-4`}>
@@ -16,7 +16,7 @@ export const Header = ({ children, title, ...props }: Props) => {
         <Row>{children}</Row>
       </Row>
 
-      <Separator />
+      {!hideSeparator && <Separator />}
     </Column>
   );
 };

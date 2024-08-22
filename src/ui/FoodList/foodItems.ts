@@ -1,5 +1,6 @@
 import { chunkify } from "@madeja-studio/cepillo";
-import { SelectableFood, FoodRowItem } from "./item/types";
+
+import { FoodRowItem, SelectableFood } from "./item/types";
 
 export const selectableFoodToFoodRows = (
   food: SelectableFood[]

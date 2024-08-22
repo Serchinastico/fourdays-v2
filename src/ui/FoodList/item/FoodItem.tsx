@@ -1,6 +1,5 @@
 import { Button, Column, type OnPress, color } from "@madeja-studio/telar";
 import { Image, Text } from "react-native";
-import tw from "twrnc";
 
 import { SelectableFood } from "./types";
 

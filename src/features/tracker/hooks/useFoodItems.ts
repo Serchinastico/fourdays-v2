@@ -1,12 +1,13 @@
 import { atoms } from "@app/core/storage/state";
+import { useFood } from "@app/domain/food/hooks/useFood";
+import { useFoodGroup } from "@app/domain/food/hooks/useFoodGroup";
+import { GroupId } from "@app/domain/food/models/food";
+import { selectableFoodToFoodRows } from "@app/ui/FoodList/foodItems";
 import {
   FoodItem,
   GroupItem,
   SelectableFood,
 } from "@app/ui/FoodList/item/types";
-import { useFood } from "@app/domain/food/hooks/useFood";
-import { useFoodGroup } from "@app/domain/food/hooks/useFoodGroup";
-import { GroupId } from "@app/domain/food/models/food";
 import { t } from "@lingui/macro";
 import { toggleItem } from "@madeja-studio/cepillo";
 import dayjs from "dayjs";
@@ -14,7 +15,6 @@ import { useAtomValue } from "jotai";
 import { useCallback, useMemo, useState } from "react";
 
 import useConsumedFood from "./useConsumedFood";
-import { selectableFoodToFoodRows } from "@app/ui/FoodList/foodItems";
 
 const FORBIDDEN_FOOD_GROUP_ID = "forbidden_food";
 const CONSUMED_FOOD_GROUP_ID = "consumed_food";

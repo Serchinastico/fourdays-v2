@@ -2,13 +2,13 @@ import { atoms } from "@app/core/storage/state";
 import { useFood } from "@app/domain/food/hooks/useFood";
 import { useFoodGroup } from "@app/domain/food/hooks/useFoodGroup";
 import { GroupId } from "@app/domain/food/models/food";
+import { selectableFoodToFoodRows } from "@app/ui/FoodList/foodItems";
 import { t } from "@lingui/macro";
 import { toggleItem } from "@madeja-studio/cepillo";
 import { useAtom } from "jotai";
 import { useCallback, useMemo, useState } from "react";
 
 import { FoodItem, GroupItem } from "../../../ui/FoodList/item/types";
-import { selectableFoodToFoodRows } from "@app/ui/FoodList/foodItems";
 
 const useFoodItems = () => {
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);

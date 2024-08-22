@@ -16,7 +16,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
 import { TextInput } from "react-native";
-import tw from "twrnc";
 
 const GROUP_CREATED_TOAST = {
   subtitle: t`You have created a new group`,
