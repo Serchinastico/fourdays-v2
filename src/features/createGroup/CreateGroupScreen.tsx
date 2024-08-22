@@ -1,3 +1,5 @@
+import { Header } from "@app/core/components/Header";
+import { Input } from "@app/core/components/Input";
 import { RootNavigationParamList } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { t } from "@lingui/macro";
@@ -15,9 +17,6 @@ import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
 import { TextInput } from "react-native";
 import tw from "twrnc";
-
-import Header from "./components/Header";
-import InputContainer from "./components/InputContainer";
 
 const GROUP_CREATED_TOAST = {
   subtitle: t`You have created a new group`,
@@ -45,11 +44,14 @@ const CreateGroupScreen = ({ navigation }: Props) => {
 
   return (
     <SafeAreaView>
-      <Header onClosePress={() => navigation.goBack()} />
+      <Header.Modal
+        onClosePress={() => navigation.goBack()}
+        title={t`Create group`}
+      />
 
       <Column style={tw`justify-between pt-4 flex flex-1`}>
         <Column style={tw`flex flex-1`}>
-          <InputContainer label={t`Name`}>
+          <Input.Container label={t`Name`}>
             <TextInput
               blurOnSubmit
               onChangeText={setName}
@@ -61,7 +63,7 @@ const CreateGroupScreen = ({ navigation }: Props) => {
             />
 
             <Separator />
-          </InputContainer>
+          </Input.Container>
         </Column>
 
         <Button

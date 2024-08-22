@@ -1,22 +1,20 @@
-import { Header as GenericHeader } from "@app/core/components/Header";
-import { t } from "@lingui/macro";
+import { Header as BaseHeader } from "@app/core/components/Header/Header";
 import { Button, type OnPress } from "@madeja-studio/telar";
 
 interface Props {
   onClosePress: OnPress;
+  title: string;
 }
 
-const Header = ({ onClosePress }: Props) => {
+export const ModalHeader = ({ onClosePress, title }: Props) => {
   return (
-    <GenericHeader title={t`Add Food`}>
+    <BaseHeader title={title}>
       <Button.Icon
         hasHapticFeedback
         icon={{ family: "Feather", name: "x" }}
         onPress={onClosePress}
         variant="text"
       />
-    </GenericHeader>
+    </BaseHeader>
   );
 };
-
-export default Header;

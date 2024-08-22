@@ -7,7 +7,7 @@ interface Props extends PropsWithChildren {
   label: string;
 }
 
-const InputContainer = ({ children, label }: Props) => {
+export const InputContainer = ({ children, label }: Props) => {
   return (
     <Column style={tw`px-4 py-2`}>
       <Text style={tw`font-bold uppercase`}>{label}</Text>
@@ -16,5 +16,3 @@ const InputContainer = ({ children, label }: Props) => {
     </Column>
   );
 };
-
-export default InputContainer;

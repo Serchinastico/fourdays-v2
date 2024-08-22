@@ -1,4 +1,6 @@
+import { Header } from "@app/core/components/Header";
 import ImagePickerDialog from "@app/core/components/ImagePicker/ImagePickerDialog";
+import { Input } from "@app/core/components/Input";
 import useImagePicker, {
   ImagePickerResult,
 } from "@app/core/hooks/useImagePicker";
@@ -26,9 +28,6 @@ import { useCallback, useState } from "react";
 import { Image, Text, TextInput, View } from "react-native";
 import tw from "twrnc";
 
-import Header from "./components/Header";
-import InputContainer from "./components/InputContainer";
-
 const FOOD_ADDED_TOAST = {
   subtitle: t`You have added a new food item to your collection`,
   title: t`Food created`,
@@ -48,9 +47,9 @@ const CAMERA_UNAVAILABLE_TOAST = {
 };
 
 interface Props
-  extends NativeStackScreenProps<RootNavigationParamList, "addFood"> {}
+  extends NativeStackScreenProps<RootNavigationParamList, "createFood"> {}
 
-const AddFoodScreen = ({ navigation }: Props) => {
+const CreateFoodScreen = ({ navigation }: Props) => {
   const setCustomFoodList = useSetAtom(atoms.customFoodList);
   const [groupId, setGroupId] = useState(BASE_FOOD_GROUPS[0].id);
   const [name, setName] = useState<string>("");
@@ -60,7 +59,7 @@ const AddFoodScreen = ({ navigation }: Props) => {
   const { getImageFrom } = useImagePicker();
   const { showToast } = useToast();
 
-  const onAddFoodPress = useCallback(async () => {
+  const onCreateFoodPress = useCallback(async () => {
     await setCustomFoodList(async (prev) => [
       ...(await prev),
       {
@@ -104,11 +103,14 @@ const AddFoodScreen = ({ navigation }: Props) => {
 
   return (
     <SafeAreaView>
-      <Header onClosePress={() => navigation.goBack()} />
+      <Header.Modal
+        onClosePress={() => navigation.goBack()}
+        title={t`Create food`}
+      />
 
       <Column style={tw`justify-between pt-4 flex flex-1`}>
         <Column style={tw`flex flex-1`}>
-          <InputContainer label={t`Group`}>
+          <Input.Container label={t`Group`}>
             <Picker
               onValueChange={(value) => setGroupId(value)}
               placeholder={t`e.g. Cocoa Powder`}
@@ -122,9 +124,9 @@ const AddFoodScreen = ({ navigation }: Props) => {
                 />
               ))}
             </Picker>
-          </InputContainer>
+          </Input.Container>
 
-          <InputContainer label={t`Name`}>
+          <Input.Container label={t`Name`}>
             <TextInput
               blurOnSubmit
               onChangeText={setName}
@@ -136,7 +138,7 @@ const AddFoodScreen = ({ navigation }: Props) => {
             />
 
             <Separator />
-          </InputContainer>
+          </Input.Container>
 
           <View style={tw`flex-1 items-center justify-center`}>
             <Button.Container
@@ -200,9 +202,9 @@ const AddFoodScreen = ({ navigation }: Props) => {
         <Button
           hasHapticFeedback
           isDisabled={!isNameDefined || !isImageDefined}
-          onPress={onAddFoodPress}
+          onPress={onCreateFoodPress}
           style={tw`self-center mb-4`}
-          text={t`Add`}
+          text={t`Create`}
         />
       </Column>
 
@@ -220,4 +222,4 @@ const AddFoodScreen = ({ navigation }: Props) => {
   );
 };
 
-export default AddFoodScreen;
+export default CreateFoodScreen;

@@ -21,7 +21,7 @@ const SetupScreen = ({ navigation, route }: Props) => {
     <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
       <Header
         isInitialSetup={isInitialSetup}
-        onAddPress={() => navigation.navigate("addFood")}
+        onAddPress={() => navigation.navigate("createFood")}
         onClosePress={() => navigation.goBack()}
         onSearchPress={() => {}}
       />
