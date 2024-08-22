@@ -11,25 +11,25 @@ interface Props {
 const useConsumedFood = ({ date }: Props) => {
   const getAtomKey = (date: Dayjs) => date.format(CONSUMED_FOOD_DATE_FORMAT);
 
-  const foodIdsOnDateMinusThree = useAtomValue(
+  const consumedFoodIdsOnDateMinusThree = useAtomValue(
     atoms.consumedFoodIds(getAtomKey(date.subtract(3, "days")))
   );
-  const foodIdsOnDateMinusTwo = useAtomValue(
+  const consumedFoodIdsOnDateMinusTwo = useAtomValue(
     atoms.consumedFoodIds(getAtomKey(date.subtract(2, "days")))
   );
-  const foodIdsOnDateMinusOne = useAtomValue(
+  const consumedFoodIdsOnDateMinusOne = useAtomValue(
     atoms.consumedFoodIds(getAtomKey(date.subtract(1, "days")))
   );
-  const [foodIdsOnDate, setFoodIdsOnDate] = useAtom(
+  const [consumedFoodIdsOnDate, setConsumedFoodIdsOnDate] = useAtom(
     atoms.consumedFoodIds(getAtomKey(date))
   );
 
   return {
-    foodIdsOnDate,
-    foodIdsOnDateMinusOne,
-    foodIdsOnDateMinusThree,
-    foodIdsOnDateMinusTwo,
-    setFoodIdsOnDate,
+    consumedFoodIdsOnDate,
+    consumedFoodIdsOnDateMinusOne,
+    consumedFoodIdsOnDateMinusThree,
+    consumedFoodIdsOnDateMinusTwo,
+    setConsumedFoodIdsOnDate,
   };
 };
 

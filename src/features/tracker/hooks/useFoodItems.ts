@@ -11,7 +11,7 @@ import { foodToFoodRow } from "@app/domain/food/utils/foodItems";
 import { t } from "@lingui/macro";
 import { toggleItem } from "@madeja-studio/cepillo";
 import dayjs from "dayjs";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { useCallback, useMemo, useState } from "react";
 
 import useConsumedFood from "./useConsumedFood";
@@ -25,26 +25,62 @@ interface Props {
 
 const useFoodItems = ({ date }: Props) => {
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
-  const [forbiddenFoodIds, setForbiddenFoodIds] = useAtom(
-    atoms.forbiddenFoodIds
-  );
+  const bannedFoodIds = useAtomValue(atoms.bannedFoodIds);
   const {
-    foodIdsOnDate,
-    foodIdsOnDateMinusOne,
-    foodIdsOnDateMinusThree,
-    foodIdsOnDateMinusTwo,
-    setFoodIdsOnDate,
+    consumedFoodIdsOnDate,
+    consumedFoodIdsOnDateMinusOne,
+    consumedFoodIdsOnDateMinusThree,
+    consumedFoodIdsOnDateMinusTwo,
+    setConsumedFoodIdsOnDate,
   } = useConsumedFood({ date });
 
   const { allFood } = useFood();
   const { allGroups } = useFoodGroup();
 
-  const consumedFoodIds = new Set([
-    ...foodIdsOnDate,
-    ...foodIdsOnDateMinusOne,
-    ...foodIdsOnDateMinusTwo,
-    ...foodIdsOnDateMinusThree,
+  const forbiddenFoodIds = new Set([
+    ...consumedFoodIdsOnDate,
+    ...consumedFoodIdsOnDateMinusOne,
+    ...consumedFoodIdsOnDateMinusTwo,
+    ...consumedFoodIdsOnDateMinusThree,
   ]);
+
+  const forbiddenFoodItems: FoodItem[] = useMemo(() => {
+    const header: GroupItem = {
+      groupId: FORBIDDEN_FOOD_GROUP_ID,
+      isOpen: openedGroupIds.includes(FORBIDDEN_FOOD_GROUP_ID),
+      tag: "group",
+      title: t`Forbidden food`,
+    };
+
+    if (!openedGroupIds.includes(header.groupId)) {
+      return [header];
+    }
+
+    const forbiddenFood: SelectableFood[] = Array.from(forbiddenFoodIds)
+      .map((id) => allFood.find((food) => food.id === id)!)
+      .map((food) => ({ ...food, isSelected: true }));
+
+    return [header, ...foodToFoodRow(forbiddenFood)];
+  }, [openedGroupIds, allFood, forbiddenFoodIds]);
+
+  const consumedFoodItems: FoodItem[] = useMemo(() => {
+    const header: GroupItem = {
+      groupId: CONSUMED_FOOD_GROUP_ID,
+      isOpen: openedGroupIds.includes(CONSUMED_FOOD_GROUP_ID),
+      tag: "group",
+      title: t`Consumed food`,
+    };
+
+    if (!openedGroupIds.includes(header.groupId)) {
+      return [header];
+    }
+
+    const consumedFood: SelectableFood[] = consumedFoodIdsOnDate
+      .map((id) => allFood.find((food) => food.id === id)!)
+      .map((food) => ({ ...food, isSelected: true }));
+
+    return [header, ...foodToFoodRow(consumedFood)];
+  }, [openedGroupIds, allFood, consumedFoodIdsOnDate]);
 
   const items: FoodItem[] = useMemo(() => {
     const foodGroups: FoodItem[] = allGroups.flatMap((group) => {
@@ -61,39 +97,12 @@ const useFoodItems = ({ date }: Props) => {
 
       const groupFood = allFood
         .filter((food) => food.groupId === group.id)
-        .filter((food) => !forbiddenFoodIds.includes(food.id))
-        .filter((food) => !consumedFoodIds.has(food.id))
+        .filter((food) => !bannedFoodIds.includes(food.id))
+        .filter((food) => !forbiddenFoodIds.has(food.id))
         .map((food) => ({ ...food, isSelected: true }));
 
       return [header, ...foodToFoodRow(groupFood)];
     });
-
-    const forbiddenFood: SelectableFood[] = Array.from(consumedFoodIds)
-      .map((id) => allFood.find((food) => food.id === id)!)
-      .map((food) => ({ ...food, isSelected: true }));
-    const forbiddenFoodGroup: FoodItem[] = [
-      {
-        groupId: FORBIDDEN_FOOD_GROUP_ID,
-        isOpen: openedGroupIds.includes(FORBIDDEN_FOOD_GROUP_ID),
-        tag: "group",
-        title: t`Forbidden food`,
-      },
-      ...foodToFoodRow(forbiddenFood),
-    ];
-
-    const consumedFood: SelectableFood[] = foodIdsOnDate
-      .map((id) => allFood.find((food) => food.id === id)!)
-      .map((food) => ({ ...food, isSelected: true }));
-
-    const consumedFoodItems: FoodItem[] = [
-      {
-        groupId: CONSUMED_FOOD_GROUP_ID,
-        isOpen: openedGroupIds.includes(CONSUMED_FOOD_GROUP_ID),
-        tag: "group",
-        title: t`Consumed food`,
-      },
-      ...foodToFoodRow(consumedFood),
-    ];
 
     return [
       {
@@ -101,16 +110,20 @@ const useFoodItems = ({ date }: Props) => {
         text: t`Here you can configure the food you ate and the food you can eat.`,
       },
       ...foodGroups,
-      ...forbiddenFoodGroup,
+      ...forbiddenFoodItems,
       ...consumedFoodItems,
     ];
-  }, [openedGroupIds, forbiddenFoodIds, consumedFoodIds]);
+  }, [
+    openedGroupIds,
+    forbiddenFoodItems,
+    consumedFoodItems,
+    bannedFoodIds,
+    forbiddenFoodIds,
+  ]);
 
-  const toggleForbiddenFoodId = useCallback(
-    (foodId: string) =>
-      setForbiddenFoodIds(async (foodIds) => toggleItem(await foodIds, foodId)),
-    []
-  );
+  const toggleConsumedFoodId = useCallback((foodId: string) => {
+    setConsumedFoodIdsOnDate(async (prev) => toggleItem(await prev, foodId));
+  }, []);
 
   const toggleOpenedGroupId = useCallback(
     (groupId: GroupId) =>
@@ -118,7 +131,7 @@ const useFoodItems = ({ date }: Props) => {
     []
   );
 
-  return { items, toggleForbiddenFoodId, toggleOpenedGroupId };
+  return { items, toggleConsumedFoodId, toggleOpenedGroupId };
 };
 
 export default useFoodItems;

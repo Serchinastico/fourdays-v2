@@ -19,7 +19,7 @@ const SetupScreen = ({ navigation, route }: Props) => {
   const isInitialSetup = route.params?.isInitialSetup ?? true;
 
   const { bottom } = useSafeAreaInsets();
-  const { items, toggleForbiddenFoodId, toggleOpenedGroupId } = useFoodItems();
+  const { items, toggleBannedFoodId, toggleOpenedGroupId } = useFoodItems();
 
   const onItemPress = useCallback((item: FoodItem) => {
     switch (item.tag) {
@@ -45,7 +45,7 @@ const SetupScreen = ({ navigation, route }: Props) => {
 
       <FoodList
         items={items}
-        onFoodPress={toggleForbiddenFoodId}
+        onFoodPress={toggleBannedFoodId}
         onItemPress={onItemPress}
       />
 

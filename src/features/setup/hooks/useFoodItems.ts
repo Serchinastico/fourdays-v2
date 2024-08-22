@@ -15,9 +15,7 @@ import {
 
 const useFoodItems = () => {
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
-  const [forbiddenFoodIds, setForbiddenFoodIds] = useAtom(
-    atoms.forbiddenFoodIds
-  );
+  const [bannedFoodIds, setBannedFoodIds] = useAtom(atoms.bannedFoodIds);
   const { allFood } = useFood();
   const { allGroups } = useFoodGroup();
 
@@ -38,7 +36,7 @@ const useFoodItems = () => {
         .filter((food) => food.groupId === group.id)
         .map((food) => ({
           ...food,
-          isSelected: !forbiddenFoodIds.includes(food.id),
+          isSelected: !bannedFoodIds.includes(food.id),
         }));
 
       return [header, ...selectableFoodsToRows(groupFood)];
@@ -52,11 +50,11 @@ const useFoodItems = () => {
       ...foodGroups,
       { tag: "create_group" },
     ];
-  }, [openedGroupIds, forbiddenFoodIds]);
+  }, [openedGroupIds, bannedFoodIds]);
 
-  const toggleForbiddenFoodId = useCallback(
+  const toggleBannedFoodId = useCallback(
     (foodId: string) =>
-      setForbiddenFoodIds(async (foodIds) => toggleItem(await foodIds, foodId)),
+      setBannedFoodIds(async (foodIds) => toggleItem(await foodIds, foodId)),
     []
   );
 
@@ -66,7 +64,11 @@ const useFoodItems = () => {
     []
   );
 
-  return { items, toggleForbiddenFoodId, toggleOpenedGroupId };
+  return {
+    items,
+    toggleBannedFoodId,
+    toggleOpenedGroupId,
+  };
 };
 
 export default useFoodItems;
