@@ -1,3 +1,4 @@
+import { color } from "@app/ui/theme/color";
 import { TelarContextProvider } from "@madeja-studio/telar";
 import { NavigationContainer } from "@react-navigation/native";
 import { PropsWithChildren } from "react";
@@ -8,7 +9,9 @@ interface Props extends PropsWithChildren {}
 
 const AllProviders = ({ children }: Props) => {
   return (
-    <TelarContextProvider theme={{ core: { color: { primary: "#52BD76" } } }}>
+    <TelarContextProvider
+      theme={{ core: { color: { primary: color.primary } } }}
+    >
       <PreloadScreen>
         <NavigationContainer>{children}</NavigationContainer>
       </PreloadScreen>

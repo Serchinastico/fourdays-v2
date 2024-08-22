@@ -1,3 +1,4 @@
+import { DatePicker } from "@app/core/components/DatePicker/DatePicker";
 import {
   Button,
   Column,
@@ -7,20 +8,19 @@ import {
   VectorIcon,
 } from "@madeja-studio/telar";
 import { Dayjs } from "dayjs";
-import { Text } from "react-native";
 
 interface Props {
   date: Dayjs;
-  onCurrentDatePress: OnPress;
   onNextDatePress: OnPress;
   onPreviousDatePress: OnPress;
+  onSelectDate: (date: Dayjs) => Promise<void> | void;
 }
 
 export const DatePickerBar = ({
   date,
-  onCurrentDatePress,
   onNextDatePress,
   onPreviousDatePress,
+  onSelectDate,
 }: Props) => {
   return (
     <Column>
@@ -35,7 +35,6 @@ export const DatePickerBar = ({
 
         <Button.Container
           hasHapticFeedback
-          onPress={onCurrentDatePress}
           style={tw`flex-1 justify-center items-center`}
         >
           <Row style={tw`items-center`}>
@@ -44,9 +43,7 @@ export const DatePickerBar = ({
               size={24}
             />
 
-            <Text style={tw`font-medium text-xl ml-2`}>
-              {date.format("ll")}
-            </Text>
+            <DatePicker date={date} onDatePick={onSelectDate} />
           </Row>
         </Button.Container>
 

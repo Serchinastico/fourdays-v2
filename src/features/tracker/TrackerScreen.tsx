@@ -4,7 +4,7 @@ import { FoodItem } from "@app/ui/FoodList/item/types";
 import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import dayjs from "dayjs";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { DatePickerBar } from "./components/DatePickerBar";
 import Header from "./components/Header";
@@ -45,9 +45,9 @@ const TrackerScreen = ({ navigation }: Props) => {
 
       <DatePickerBar
         date={date}
-        onCurrentDatePress={() => {}}
         onNextDatePress={() => setDate((date) => date.add(1, "day"))}
         onPreviousDatePress={() => setDate((date) => date.subtract(1, "day"))}
+        onSelectDate={(date) => setDate(date)}
       />
 
       <FoodList

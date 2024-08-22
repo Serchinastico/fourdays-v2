@@ -24,7 +24,6 @@ interface Props {
 }
 
 const useFoodItems = ({ date }: Props) => {
-  console.log(date);
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
   const bannedFoodIds = useAtomValue(atoms.bannedFoodIds);
   const {
