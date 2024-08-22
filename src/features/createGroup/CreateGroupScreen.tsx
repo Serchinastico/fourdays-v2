@@ -1,6 +1,6 @@
 import { Header } from "@app/core/components/Header";
 import { Input } from "@app/core/components/Input";
-import { RootNavigationParamList } from "@app/core/navigation/routes";
+import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { t } from "@lingui/macro";
 import { randomString } from "@madeja-studio/cepillo";
@@ -12,7 +12,6 @@ import {
   color,
   useToast,
 } from "@madeja-studio/telar";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
 import { TextInput } from "react-native";
@@ -22,10 +21,8 @@ const GROUP_CREATED_TOAST = {
   title: t`Group created`,
   variant: "success" as const,
 };
-interface Props
-  extends NativeStackScreenProps<RootNavigationParamList, "createGroup"> {}
 
-const CreateGroupScreen = ({ navigation }: Props) => {
+const CreateGroupScreen = ({ navigation }: RootScreenProps<"createGroup">) => {
   const setCustomGroupList = useSetAtom(atoms.customGroupList);
   const [name, setName] = useState<string>("");
   const { showToast } = useToast();

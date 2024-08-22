@@ -1,8 +1,7 @@
-import { RootNavigationParamList } from "@app/core/navigation/routes";
+import { RootScreenProps } from "@app/core/navigation/routes";
 import { FoodList } from "@app/ui/FoodList";
 import { FoodItem } from "@app/ui/FoodList/item/types";
 import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import dayjs from "dayjs";
 import React, { useCallback, useState } from "react";
 
@@ -10,10 +9,7 @@ import { DatePickerBar } from "./components/DatePickerBar";
 import Header from "./components/Header";
 import useFoodItems from "./hooks/useFoodItems";
 
-interface Props
-  extends NativeStackScreenProps<RootNavigationParamList, "tracker"> {}
-
-const TrackerScreen = ({ navigation }: Props) => {
+const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
   const [date, setDate] = useState(dayjs());
   const { items, toggleConsumedFoodId, toggleOpenedGroupId } = useFoodItems({
     date,

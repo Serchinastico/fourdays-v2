@@ -1,9 +1,8 @@
-import { RootNavigationParamList } from "@app/core/navigation/routes";
+import { RootScreenProps } from "@app/core/navigation/routes";
 import { FoodList } from "@app/ui/FoodList";
 import { FoodItem } from "@app/ui/FoodList/item/types";
 import { t } from "@lingui/macro";
 import { Button, SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useCallback } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -11,10 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "./components/Header";
 import useFoodItems from "./hooks/useFoodItems";
 
-interface Props
-  extends NativeStackScreenProps<RootNavigationParamList, "setup"> {}
-
-const SetupScreen = ({ navigation, route }: Props) => {
+const SetupScreen = ({ navigation, route }: RootScreenProps<"setup">) => {
   const isInitialSetup = route.params?.isInitialSetup ?? true;
 
   const { bottom } = useSafeAreaInsets();

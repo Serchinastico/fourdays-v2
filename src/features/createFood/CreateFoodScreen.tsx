@@ -4,7 +4,7 @@ import { Input } from "@app/core/components/Input";
 import useImagePicker, {
   ImagePickerResult,
 } from "@app/core/hooks/useImagePicker";
-import { RootNavigationParamList } from "@app/core/navigation/routes";
+import { RootScreenProps } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
 import { useFoodGroup } from "@app/domain/food/hooks/useFoodGroup";
 import {
@@ -23,7 +23,6 @@ import {
   useToast,
 } from "@madeja-studio/telar";
 import { Picker } from "@react-native-picker/picker";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
 import { Image, Text, TextInput, View } from "react-native";
@@ -46,10 +45,7 @@ const CAMERA_UNAVAILABLE_TOAST = {
   variant: "error" as const,
 };
 
-interface Props
-  extends NativeStackScreenProps<RootNavigationParamList, "createFood"> {}
-
-const CreateFoodScreen = ({ navigation }: Props) => {
+const CreateFoodScreen = ({ navigation }: RootScreenProps<"createFood">) => {
   const setCustomFoodList = useSetAtom(atoms.customFoodList);
   const [groupId, setGroupId] = useState(BASE_FOOD_GROUPS[0].id);
   const [name, setName] = useState<string>("");
