@@ -1,9 +1,11 @@
+import CreateGroup from "./CreateGroup";
 import Description from "./Description";
-import Header from "./Header";
-import Row from "./Row";
+import FoodRow from "./FoodRow";
+import Group from "./Group";
 
 export const Item = {
+  CreateGroup,
   Description,
-  Header,
-  Row,
+  FoodRow,
+  Group,
 };

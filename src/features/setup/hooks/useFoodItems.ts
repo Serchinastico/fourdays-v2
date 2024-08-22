@@ -9,7 +9,7 @@ import { chunkify, toggleItem } from "@madeja-studio/cepillo";
 import { useAtom, useAtomValue } from "jotai";
 import { useCallback, useMemo, useState } from "react";
 
-import { FoodItem, HeaderItem } from "../components/list/item/types";
+import { FoodItem, GroupItem } from "../components/list/item/types";
 
 const useFoodItems = () => {
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
@@ -22,7 +22,7 @@ const useFoodItems = () => {
     const allFood = [...BASE_FOODS, ...customFood];
 
     const foodGroups: FoodItem[] = BASE_FOOD_GROUPS.flatMap((group) => {
-      const header: HeaderItem = {
+      const header: GroupItem = {
         groupId: group.id,
         isOpen: openedGroupIds.includes(group.id),
         tag: "header",
@@ -54,6 +54,7 @@ const useFoodItems = () => {
         text: t`Deselect all the items you have food intolerance or causes you allergic reactions.`,
       },
       ...foodGroups,
+      { tag: "create_group" },
     ];
   }, [openedGroupIds, forbiddenFoodIds]);
 

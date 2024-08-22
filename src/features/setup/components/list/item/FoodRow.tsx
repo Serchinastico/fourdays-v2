@@ -3,14 +3,14 @@ import { Row as RowLayout } from "@madeja-studio/telar";
 import tw from "twrnc";
 
 import FoodItem from "./FoodItem";
-import { RowItem } from "./types";
+import { FoodRowItem } from "./types";
 
 interface Props {
-  item: RowItem;
+  item: FoodRowItem;
   onPress: (foodId: string) => void;
 }
 
-const Row = ({ item, onPress }: Props) => {
+const FoodRow = ({ item, onPress }: Props) => {
   const paddedItems = padArray(item.items, 3, null);
 
   return (
@@ -32,4 +32,4 @@ const Row = ({ item, onPress }: Props) => {
   );
 };
 
-export default Row;
+export default FoodRow;

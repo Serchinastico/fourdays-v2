@@ -1,10 +1,15 @@
 import useFoodItems from "@app/features/setup/hooks/useFoodItems";
+import { OnPress } from "@madeja-studio/telar";
 import { FlashList } from "@shopify/flash-list";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Item } from "./item";
 
-const FoodList = () => {
+interface Props {
+  onCreateGroupPress: OnPress;
+}
+
+const FoodList = ({ onCreateGroupPress }: Props) => {
   const { bottom } = useSafeAreaInsets();
   const { items, toggleForbiddenFoodId, toggleOpenedGroupId } = useFoodItems();
 
@@ -21,15 +26,22 @@ const FoodList = () => {
             return <Item.Description item={item} />;
           case "header":
             return (
-              <Item.Header
+              <Item.Group
                 item={item}
                 key={`header_${item.groupId}`}
                 onPress={() => toggleOpenedGroupId(item.groupId)}
               />
             );
+          case "create_group":
+            return (
+              <Item.CreateGroup
+                key="create_group"
+                onPress={onCreateGroupPress}
+              />
+            );
           case "row":
             return (
-              <Item.Row
+              <Item.FoodRow
                 item={item}
                 key={`row_${item.items.map((it) => it.name).join("_")}`}
                 onPress={(foodId) => toggleForbiddenFoodId(foodId)}

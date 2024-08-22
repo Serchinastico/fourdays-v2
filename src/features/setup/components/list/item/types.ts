@@ -8,7 +8,7 @@ export type DescriptionItem = Tagged<
   }
 >;
 
-export type HeaderItem = Tagged<
+export type GroupItem = Tagged<
   "header",
   {
     groupId: GroupId;
@@ -17,13 +17,19 @@ export type HeaderItem = Tagged<
   }
 >;
 
+export type CreateGroupItem = Tagged<"create_group">;
+
 export type RowItemFood = { isSelected: boolean } & Food;
 
-export type RowItem = Tagged<
+export type FoodRowItem = Tagged<
   "row",
   {
     items: RowItemFood[];
   }
 >;
 
-export type FoodItem = DescriptionItem | HeaderItem | RowItem;
+export type FoodItem =
+  | CreateGroupItem
+  | DescriptionItem
+  | FoodRowItem
+  | GroupItem;
