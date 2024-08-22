@@ -1,14 +1,7 @@
 import { t } from "@lingui/macro";
 import { Tagged } from "@madeja-studio/cepillo";
 
-export type GroupId =
-  | "Group 1"
-  | "Group 2"
-  | "Group 3"
-  | "Group 4"
-  | (object & string);
-
-export type Base64Image = string;
+export type GroupId = string;
 
 export interface Base64FoodImage {
   data: { uri: `data:image/png;base64,${string}` };

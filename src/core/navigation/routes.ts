@@ -3,6 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export type RootNavigationParamList = {
   addFood: undefined;
+  createGroup: undefined;
   setup?: { isInitialSetup: boolean };
   tracker: undefined;
 };

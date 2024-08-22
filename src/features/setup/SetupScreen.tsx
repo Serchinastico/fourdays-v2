@@ -26,7 +26,7 @@ const SetupScreen = ({ navigation, route }: Props) => {
         onSearchPress={() => {}}
       />
 
-      <FoodList onCreateGroupPress={() => {}} />
+      <FoodList onCreateGroupPress={() => navigation.navigate("createGroup")} />
 
       <View style={[tw`absolute bottom-[${bottom}px] self-center`]}>
         <Button

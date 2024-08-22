@@ -1,4 +1,5 @@
 import AddFoodScreen from "@app/features/addFood/AddFoodScreen";
+import CreateGroupScreen from "@app/features/addGroup/CreateGroupScreen";
 import SetupScreen from "@app/features/setup/SetupScreen";
 import TrackerScreen from "@app/features/tracker/TrackerScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -18,6 +19,11 @@ const RootNavigation = () => {
       <Stack.Screen
         component={AddFoodScreen}
         name="addFood"
+        options={{ presentation: "fullScreenModal" }}
+      />
+      <Stack.Screen
+        component={CreateGroupScreen}
+        name="createGroup"
         options={{ presentation: "fullScreenModal" }}
       />
     </Stack.Navigator>
