@@ -32,7 +32,9 @@ const TrackerScreen = ({ navigation }: Props) => {
     <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
       <Header
         onSearchPress={() => {}}
-        onSettingsPress={() => navigation.navigate("createFood")}
+        onSettingsPress={() =>
+          navigation.navigate("setup", { isInitialSetup: false })
+        }
         onSharePress={() => navigation.goBack()}
       />
 

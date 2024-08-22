@@ -15,7 +15,15 @@ const RootNavigation = () => {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen component={TrackerScreen} name="tracker" />
-      <Stack.Screen component={SetupScreen} name="setup" />
+      <Stack.Screen
+        component={SetupScreen}
+        name="setup"
+        options={({ route }) => {
+          const isInitialSetup = route.params?.isInitialSetup ?? true;
+
+          return { presentation: isInitialSetup ? "card" : "fullScreenModal" };
+        }}
+      />
       <Stack.Screen
         component={CreateFoodScreen}
         name="createFood"
