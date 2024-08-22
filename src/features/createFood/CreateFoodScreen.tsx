@@ -28,6 +28,8 @@ import { useCallback, useState } from "react";
 import { Image, Text, TextInput, View } from "react-native";
 import tw from "twrnc";
 
+import { useFoodGroup } from "../tracker/hooks/useFoodGroup";
+
 const FOOD_ADDED_TOAST = {
   subtitle: t`You have added a new food item to your collection`,
   title: t`Food created`,
@@ -57,6 +59,7 @@ const CreateFoodScreen = ({ navigation }: Props) => {
   const [isImagePickerDialogVisible, setIsImagePickerDialogVisible] =
     useState(false);
   const { getImageFrom } = useImagePicker();
+  const { allGroups } = useFoodGroup();
   const { showToast } = useToast();
 
   const onCreateFoodPress = useCallback(async () => {
@@ -116,7 +119,7 @@ const CreateFoodScreen = ({ navigation }: Props) => {
               placeholder={t`e.g. Cocoa Powder`}
               selectedValue={groupId}
             >
-              {BASE_FOOD_GROUPS.map((group) => (
+              {allGroups.map((group) => (
                 <Picker.Item
                   key={group.id}
                   label={group.name}
