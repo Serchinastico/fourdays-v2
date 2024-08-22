@@ -1,12 +1,10 @@
 import { atoms } from "@app/core/storage/state";
-import {
-  BASE_FOOD_GROUPS,
-  BASE_FOODS,
-  GroupId,
-} from "@app/features/tracker/models/food";
+import { useFood } from "@app/features/tracker/hooks/useFood";
+import { useFoodGroup } from "@app/features/tracker/hooks/useFoodGroup";
+import { GroupId } from "@app/features/tracker/models/food";
 import { t } from "@lingui/macro";
 import { chunkify, toggleItem } from "@madeja-studio/cepillo";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { useCallback, useMemo, useState } from "react";
 
 import { FoodItem, GroupItem } from "../components/list/item/types";
@@ -16,12 +14,11 @@ const useFoodItems = () => {
   const [forbiddenFoodIds, setForbiddenFoodIds] = useAtom(
     atoms.forbiddenFoodIds
   );
-  const customFood = useAtomValue(atoms.customFoodList);
+  const { allFood } = useFood();
+  const { allGroups } = useFoodGroup();
 
   const items: FoodItem[] = useMemo(() => {
-    const allFood = [...BASE_FOODS, ...customFood];
-
-    const foodGroups: FoodItem[] = BASE_FOOD_GROUPS.flatMap((group) => {
+    const foodGroups: FoodItem[] = allGroups.flatMap((group) => {
       const header: GroupItem = {
         groupId: group.id,
         isOpen: openedGroupIds.includes(group.id),
