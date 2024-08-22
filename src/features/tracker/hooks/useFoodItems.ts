@@ -24,6 +24,7 @@ interface Props {
 }
 
 const useFoodItems = ({ date }: Props) => {
+  console.log(date);
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
   const bannedFoodIds = useAtomValue(atoms.bannedFoodIds);
   const {
@@ -37,12 +38,21 @@ const useFoodItems = ({ date }: Props) => {
   const { allFood } = useFood();
   const { allGroups } = useFoodGroup();
 
-  const forbiddenFoodIds = new Set([
-    ...consumedFoodIdsOnDate,
-    ...consumedFoodIdsOnDateMinusOne,
-    ...consumedFoodIdsOnDateMinusTwo,
-    ...consumedFoodIdsOnDateMinusThree,
-  ]);
+  const forbiddenFoodIds = useMemo(
+    () =>
+      new Set([
+        ...consumedFoodIdsOnDate,
+        ...consumedFoodIdsOnDateMinusOne,
+        ...consumedFoodIdsOnDateMinusTwo,
+        ...consumedFoodIdsOnDateMinusThree,
+      ]),
+    [
+      consumedFoodIdsOnDate,
+      consumedFoodIdsOnDateMinusOne,
+      consumedFoodIdsOnDateMinusTwo,
+      consumedFoodIdsOnDateMinusThree,
+    ]
+  );
 
   const forbiddenFoodItems: FoodItem[] = useMemo(() => {
     const header: GroupItem = {
@@ -121,9 +131,12 @@ const useFoodItems = ({ date }: Props) => {
     forbiddenFoodIds,
   ]);
 
-  const toggleConsumedFoodId = useCallback((foodId: string) => {
-    setConsumedFoodIdsOnDate(async (prev) => toggleItem(await prev, foodId));
-  }, []);
+  const toggleConsumedFoodId = useCallback(
+    (foodId: string) => {
+      setConsumedFoodIdsOnDate(async (prev) => toggleItem(await prev, foodId));
+    },
+    [setConsumedFoodIdsOnDate]
+  );
 
   const toggleOpenedGroupId = useCallback(
     (groupId: GroupId) =>

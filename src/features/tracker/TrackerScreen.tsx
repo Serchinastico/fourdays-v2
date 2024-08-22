@@ -19,16 +19,19 @@ const TrackerScreen = ({ navigation }: Props) => {
     date,
   });
 
-  const onItemPress = useCallback((item: FoodItem) => {
-    switch (item.tag) {
-      case "group":
-        toggleOpenedGroupId(item.groupId);
-        break;
-      case "create_group":
-      case "description":
-      case "row":
-    }
-  }, []);
+  const onItemPress = useCallback(
+    (item: FoodItem) => {
+      switch (item.tag) {
+        case "group":
+          toggleOpenedGroupId(item.groupId);
+          break;
+        case "create_group":
+        case "description":
+        case "row":
+      }
+    },
+    [toggleOpenedGroupId]
+  );
 
   return (
     <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
@@ -37,7 +40,7 @@ const TrackerScreen = ({ navigation }: Props) => {
         onSettingsPress={() =>
           navigation.navigate("setup", { isInitialSetup: false })
         }
-        onSharePress={() => navigation.goBack()}
+        onSharePress={() => {}}
       />
 
       <DatePickerBar

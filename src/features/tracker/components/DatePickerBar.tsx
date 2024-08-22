@@ -10,33 +10,33 @@ import { Dayjs } from "dayjs";
 import { Text } from "react-native";
 
 interface Props {
-  onPreviousDatePress: OnPress;
-  onNextDatePress: OnPress;
-  onCurrentDatePress: OnPress;
   date: Dayjs;
+  onCurrentDatePress: OnPress;
+  onNextDatePress: OnPress;
+  onPreviousDatePress: OnPress;
 }
 
 export const DatePickerBar = ({
+  date,
   onCurrentDatePress,
   onNextDatePress,
   onPreviousDatePress,
-  date,
 }: Props) => {
   return (
     <Column>
       <Row style={tw`justify-between py-2`}>
         <Button.Icon
+          color="secondary"
           hasHapticFeedback
           icon={{ family: "Feather", name: "chevron-left" }}
-          color="secondary"
-          variant="text"
           onPress={onPreviousDatePress}
+          variant="text"
         />
 
         <Button.Container
           hasHapticFeedback
-          style={tw`flex-1 justify-center items-center`}
           onPress={onCurrentDatePress}
+          style={tw`flex-1 justify-center items-center`}
         >
           <Row style={tw`items-center`}>
             <VectorIcon
@@ -51,11 +51,11 @@ export const DatePickerBar = ({
         </Button.Container>
 
         <Button.Icon
+          color="secondary"
           hasHapticFeedback
           icon={{ family: "Feather", name: "chevron-right" }}
-          color="secondary"
-          variant="text"
           onPress={onNextDatePress}
+          variant="text"
         />
       </Row>
       <Separator />

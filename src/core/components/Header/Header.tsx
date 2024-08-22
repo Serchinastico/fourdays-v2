@@ -3,11 +3,11 @@ import { PropsWithChildren } from "react";
 import { Text, ViewProps } from "react-native";
 
 interface Props extends PropsWithChildren<ViewProps> {
-  title: string;
   hideSeparator?: boolean;
+  title: string;
 }
 
-export const Header = ({ children, title, hideSeparator, ...props }: Props) => {
+export const Header = ({ children, hideSeparator, title, ...props }: Props) => {
   return (
     <Column {...props}>
       <Row style={tw`items-center justify-between px-4 pt-2 pb-4`}>

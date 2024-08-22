@@ -10,7 +10,7 @@ interface Props {
 
 const Header = ({ onSearchPress, onSettingsPress, onSharePress }: Props) => {
   return (
-    <GenericHeader title={t`Tracker`} hideSeparator>
+    <GenericHeader hideSeparator title={t`Tracker`}>
       <Button.Icon
         hasHapticFeedback
         icon={{ family: "Feather", name: "search" }}
