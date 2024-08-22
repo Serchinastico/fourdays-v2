@@ -6,10 +6,11 @@ import useImagePicker, {
 } from "@app/core/hooks/useImagePicker";
 import { RootNavigationParamList } from "@app/core/navigation/routes";
 import { atoms } from "@app/core/storage/state";
+import { useFoodGroup } from "@app/domain/food/hooks/useFoodGroup";
 import {
   BASE_FOOD_GROUPS,
   Base64FoodImage,
-} from "@app/features/tracker/models/food";
+} from "@app/domain/food/models/food";
 import { t } from "@lingui/macro";
 import { randomString } from "@madeja-studio/cepillo";
 import {
@@ -27,8 +28,6 @@ import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
 import { Image, Text, TextInput, View } from "react-native";
 import tw from "twrnc";
-
-import { useFoodGroup } from "../tracker/hooks/useFoodGroup";
 
 const FOOD_ADDED_TOAST = {
   subtitle: t`You have added a new food item to your collection`,

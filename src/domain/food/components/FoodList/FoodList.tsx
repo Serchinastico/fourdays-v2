@@ -1,17 +1,23 @@
-import useFoodItems from "@app/features/setup/hooks/useFoodItems";
-import { OnPress } from "@madeja-studio/telar";
 import { FlashList } from "@shopify/flash-list";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Item } from "./item";
+import { FoodItem } from "./item/types";
 
 interface Props {
-  onCreateGroupPress: OnPress;
+  items: FoodItem[];
+  /**
+   * onFoodPress is different here because food items are contained
+   * inside rows. That means if we'd use onItemPress we'd have to
+   * return a whole row and it would be impossible to determine which
+   * food item inside the row was pressed.
+   */
+  onFoodPress: (foodId: string) => Promise<void> | void;
+  onItemPress: (item: FoodItem) => Promise<void> | void;
 }
 
-const FoodList = ({ onCreateGroupPress }: Props) => {
+export const FoodList = ({ items, onFoodPress, onItemPress }: Props) => {
   const { bottom } = useSafeAreaInsets();
-  const { items, toggleForbiddenFoodId, toggleOpenedGroupId } = useFoodItems();
 
   return (
     <FlashList
@@ -24,19 +30,19 @@ const FoodList = ({ onCreateGroupPress }: Props) => {
         switch (item.tag) {
           case "description":
             return <Item.Description item={item} />;
-          case "header":
+          case "group":
             return (
               <Item.Group
                 item={item}
                 key={`header_${item.groupId}`}
-                onPress={() => toggleOpenedGroupId(item.groupId)}
+                onPress={() => onItemPress(item)}
               />
             );
           case "create_group":
             return (
               <Item.CreateGroup
                 key="create_group"
-                onPress={onCreateGroupPress}
+                onPress={() => onItemPress(item)}
               />
             );
           case "row":
@@ -44,7 +50,7 @@ const FoodList = ({ onCreateGroupPress }: Props) => {
               <Item.FoodRow
                 item={item}
                 key={`row_${item.items.map((it) => it.name).join("_")}`}
-                onPress={(foodId) => toggleForbiddenFoodId(foodId)}
+                onPress={(foodId) => onFoodPress(foodId)}
               />
             );
         }
@@ -52,5 +58,3 @@ const FoodList = ({ onCreateGroupPress }: Props) => {
     />
   );
 };
-
-export default FoodList;

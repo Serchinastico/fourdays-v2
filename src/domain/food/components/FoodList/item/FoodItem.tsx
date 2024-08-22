@@ -2,10 +2,10 @@ import { Button, Column, type OnPress, color } from "@madeja-studio/telar";
 import { Image, Text } from "react-native";
 import tw from "twrnc";
 
-import { RowItemFood } from "./types";
+import { SelectableFood } from "./types";
 
 interface Props {
-  food: RowItemFood;
+  food: SelectableFood;
   onPress: OnPress;
 }
 

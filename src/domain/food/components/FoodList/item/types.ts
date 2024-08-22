@@ -1,4 +1,4 @@
-import { Food, GroupId } from "@app/features/tracker/models/food";
+import { Food, GroupId } from "@app/domain/food/models/food";
 import { Tagged } from "@madeja-studio/cepillo";
 
 export type DescriptionItem = Tagged<
@@ -9,7 +9,7 @@ export type DescriptionItem = Tagged<
 >;
 
 export type GroupItem = Tagged<
-  "header",
+  "group",
   {
     groupId: GroupId;
     isOpen: boolean;
@@ -19,12 +19,12 @@ export type GroupItem = Tagged<
 
 export type CreateGroupItem = Tagged<"create_group">;
 
-export type RowItemFood = { isSelected: boolean } & Food;
+export type SelectableFood = { isSelected: boolean } & Food;
 
 export type FoodRowItem = Tagged<
   "row",
   {
-    items: RowItemFood[];
+    items: SelectableFood[];
   }
 >;
 

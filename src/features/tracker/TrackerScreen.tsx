@@ -1,11 +1,28 @@
-import { Text, View } from "react-native";
-import tw from "twrnc";
+import { RootNavigationParamList } from "@app/core/navigation/routes";
+import { FoodList } from "@app/domain/food/components/FoodList";
+import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import dayjs from "dayjs";
 
-const TrackerScreen = () => {
+import Header from "./components/Header";
+import useFoodItems from "./hooks/useFoodItems";
+
+interface Props
+  extends NativeStackScreenProps<RootNavigationParamList, "tracker"> {}
+
+const TrackerScreen = ({ navigation }: Props) => {
+  const { items } = useFoodItems({ date: dayjs() });
+
   return (
-    <View style={tw`p-8 flex flex-1 justify-center items-center`}>
-      <Text style={tw`font-bold text-4xl`}>This is Four Days</Text>
-    </View>
+    <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
+      <Header
+        onSearchPress={() => {}}
+        onSettingsPress={() => navigation.navigate("createFood")}
+        onSharePress={() => navigation.goBack()}
+      />
+
+      <FoodList items={items} onFoodPress={() => {}} onItemPress={() => {}} />
+    </SafeAreaView>
   );
 };
 

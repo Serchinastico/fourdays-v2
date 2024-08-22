@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator<RootNavigationParamList>();
 const RootNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName="setup"
+      initialRouteName="tracker"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen component={TrackerScreen} name="tracker" />

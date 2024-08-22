@@ -1,4 +1,4 @@
-import { Food, FoodGroup } from "@app/features/tracker/models/food";
+import { Food, FoodGroup } from "@app/domain/food/models/food";
 import { atomFamily } from "jotai/utils";
 
 import { atomWithAsyncStorage } from "./async-storage";
