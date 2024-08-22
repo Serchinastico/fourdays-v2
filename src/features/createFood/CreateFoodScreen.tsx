@@ -73,7 +73,7 @@ const CreateFoodScreen = ({ navigation }: Props) => {
     ]);
     showToast(FOOD_ADDED_TOAST);
     navigation.goBack();
-  }, [name, groupId]);
+  }, [name, image, groupId]);
 
   const onImageSelect = useCallback(
     async (promise: Promise<ImagePickerResult>) => {
