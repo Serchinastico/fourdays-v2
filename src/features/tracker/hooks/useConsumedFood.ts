@@ -2,7 +2,7 @@ import { atoms } from "@app/core/storage/state";
 import dayjs, { Dayjs } from "dayjs";
 import { useAtom, useAtomValue } from "jotai";
 
-const CONSUMED_FOOD_DATE_FORMAT = "DD-MM-YYYY";
+export const CONSUMED_FOOD_DATE_FORMAT = "DD-MM-YYYY";
 
 interface Props {
   date: dayjs.Dayjs;

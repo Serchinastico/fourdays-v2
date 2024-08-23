@@ -8,6 +8,7 @@ import React, { useCallback, useState } from "react";
 import { DatePickerBar } from "./components/DatePickerBar";
 import Header from "./components/Header";
 import useFoodItems from "./hooks/useFoodItems";
+import { useShareReport } from "./hooks/useShareReport";
 
 const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
   const [date, setDate] = useState(dayjs());
@@ -16,6 +17,7 @@ const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
     date,
     searchText,
   });
+  const { shareReport } = useShareReport();
   const [isSearching, setIsSearching] = useState(false);
 
   const onItemPress = useCallback(
@@ -43,7 +45,7 @@ const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
         onSettingsPress={() =>
           navigation.navigate("setup", { isInitialSetup: false })
         }
-        onSharePress={() => {}}
+        onSharePress={() => shareReport({ date })}
         searchText={searchText}
       />
 
