@@ -1,4 +1,5 @@
 import { atoms } from "@app/core/storage/state";
+import { fuzzySearch } from "@app/core/utils/fuzzySearch";
 import { useFood } from "@app/domain/food/hooks/useFood";
 import { useFoodGroup } from "@app/domain/food/hooks/useFoodGroup";
 import { GroupId } from "@app/domain/food/models/food";
@@ -10,13 +11,36 @@ import { useCallback, useMemo, useState } from "react";
 
 import { FoodItem, GroupItem } from "../../../ui/FoodList/item/types";
 
-const useFoodItems = () => {
+interface Props {
+  searchText: string;
+}
+
+const useFoodItems = ({ searchText }: Props) => {
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
   const [bannedFoodIds, setBannedFoodIds] = useAtom(atoms.bannedFoodIds);
   const { allFood } = useFood();
   const { allGroups } = useFoodGroup();
 
+  const getSearchItems = useCallback((): FoodItem[] => {
+    const filteredFood = fuzzySearch({
+      items: allFood,
+      key: "name",
+      search: searchText,
+    });
+
+    const selectableFood = filteredFood.map((food) => ({
+      ...food,
+      isSelected: !bannedFoodIds.includes(food.id),
+    }));
+
+    return selectableFoodToFoodRows(selectableFood);
+  }, [allFood, searchText, bannedFoodIds]);
+
   const items: FoodItem[] = useMemo(() => {
+    if (searchText.trim() !== "") {
+      return getSearchItems();
+    }
+
     const foodGroups: FoodItem[] = allGroups.flatMap((group) => {
       const header: GroupItem = {
         groupId: group.id,
@@ -47,7 +71,7 @@ const useFoodItems = () => {
       ...foodGroups,
       { tag: "create_group" },
     ];
-  }, [openedGroupIds, bannedFoodIds]);
+  }, [searchText, getSearchItems, openedGroupIds, bannedFoodIds]);
 
   const toggleBannedFoodId = useCallback(
     (foodId: string) =>

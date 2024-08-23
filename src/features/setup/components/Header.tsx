@@ -1,9 +1,11 @@
 import { Header as GenericHeader } from "@app/core/components/Header";
 import { t } from "@lingui/macro";
 import { Button, type OnPress } from "@madeja-studio/telar";
+import { ComponentProps } from "react";
 
-interface Props {
+interface Props extends ComponentProps<typeof GenericHeader.Search> {
   isInitialSetup: boolean;
+  isSearching: boolean;
   onAddPress: OnPress;
   onClosePress?: OnPress;
   onSearchPress: OnPress;
@@ -11,10 +13,16 @@ interface Props {
 
 const Header = ({
   isInitialSetup,
+  isSearching,
   onAddPress,
   onClosePress,
   onSearchPress,
+  ...searchProps
 }: Props) => {
+  if (isSearching) {
+    return <GenericHeader.Search {...searchProps} />;
+  }
+
   return (
     <GenericHeader title={t`Configuration`}>
       <Button.Icon

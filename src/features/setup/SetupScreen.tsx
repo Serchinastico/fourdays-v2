@@ -3,7 +3,7 @@ import { FoodList } from "@app/ui/FoodList";
 import { PressableFoodItem } from "@app/ui/FoodList/item/types";
 import { t } from "@lingui/macro";
 import { Button, SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -13,8 +13,12 @@ import useFoodItems from "./hooks/useFoodItems";
 const SetupScreen = ({ navigation, route }: RootScreenProps<"setup">) => {
   const isInitialSetup = route.params?.isInitialSetup ?? true;
 
+  const [searchText, setSearchText] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
   const { bottom } = useSafeAreaInsets();
-  const { items, toggleBannedFoodId, toggleOpenedGroupId } = useFoodItems();
+  const { items, toggleBannedFoodId, toggleOpenedGroupId } = useFoodItems({
+    searchText,
+  });
 
   const onItemPress = useCallback((item: PressableFoodItem) => {
     switch (item.tag) {
@@ -31,9 +35,16 @@ const SetupScreen = ({ navigation, route }: RootScreenProps<"setup">) => {
     <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
       <Header
         isInitialSetup={isInitialSetup}
+        isSearching={isSearching}
         onAddPress={() => navigation.navigate("createFood")}
+        onCancelSearchPress={() => {
+          setSearchText("");
+          setIsSearching(false);
+        }}
         onClosePress={() => navigation.goBack()}
-        onSearchPress={() => {}}
+        onSearchPress={() => setIsSearching(true)}
+        onSearchTextChange={setSearchText}
+        searchText={searchText}
       />
 
       <FoodList

@@ -36,7 +36,7 @@ const useFoodItems = ({ date, searchText }: Props) => {
     setConsumedFoodIdsOnDate,
   } = useConsumedFood({ date });
 
-  const { allFood } = useFood();
+  const { allowedFood } = useFood();
   const { allGroups } = useFoodGroup();
 
   const forbiddenFoodIds = useMemo(
@@ -68,11 +68,11 @@ const useFoodItems = ({ date, searchText }: Props) => {
     }
 
     const forbiddenFood: SelectableFood[] = Array.from(forbiddenFoodIds)
-      .map((id) => allFood.find((food) => food.id === id)!)
+      .map((id) => allowedFood.find((food) => food.id === id)!)
       .map((food) => ({ ...food, isSelected: true }));
 
     return [header, ...selectableFoodToFoodRows(forbiddenFood)];
-  }, [openedGroupIds, allFood, forbiddenFoodIds]);
+  }, [openedGroupIds, allowedFood, forbiddenFoodIds]);
 
   const consumedFoodItems: FoodItem[] = useMemo(() => {
     const header: GroupItem = {
@@ -87,15 +87,15 @@ const useFoodItems = ({ date, searchText }: Props) => {
     }
 
     const consumedFood: SelectableFood[] = consumedFoodIdsOnDate
-      .map((id) => allFood.find((food) => food.id === id)!)
+      .map((id) => allowedFood.find((food) => food.id === id)!)
       .map((food) => ({ ...food, isSelected: true }));
 
     return [header, ...selectableFoodToFoodRows(consumedFood)];
-  }, [openedGroupIds, allFood, consumedFoodIdsOnDate]);
+  }, [openedGroupIds, allowedFood, consumedFoodIdsOnDate]);
 
   const getSearchItems = useCallback((): FoodItem[] => {
     const filteredFood = fuzzySearch({
-      items: allFood,
+      items: allowedFood,
       key: "name",
       search: searchText,
     });
@@ -122,7 +122,7 @@ const useFoodItems = ({ date, searchText }: Props) => {
           ),
         ];
       });
-  }, [allFood, consumedFoodItems, searchText]);
+  }, [allowedFood, consumedFoodItems, searchText]);
 
   const items: FoodItem[] = useMemo(() => {
     if (searchText.trim() !== "") {
@@ -141,7 +141,7 @@ const useFoodItems = ({ date, searchText }: Props) => {
         return [header];
       }
 
-      const groupFood = allFood
+      const groupFood = allowedFood
         .filter((food) => food.groupId === group.id)
         .filter((food) => !bannedFoodIds.includes(food.id))
         .filter((food) => !forbiddenFoodIds.has(food.id))

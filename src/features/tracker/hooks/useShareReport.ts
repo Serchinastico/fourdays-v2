@@ -228,7 +228,7 @@ export const useShareReport = () => {
         mimeType: "application/pdf",
       });
     },
-    [allFood]
+    [allFood, exportDirectory]
   );
 
   return { shareReport };

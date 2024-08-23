@@ -27,7 +27,7 @@ const FoodItem = ({ food, onPress }: Props) => {
         ]}
       >
         <Image
-          source={food.image.data}
+          source={food.image?.data}
           style={[
             tw`aspect-square rounded-md`,
             {

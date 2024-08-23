@@ -13,12 +13,12 @@ import { useShareReport } from "./hooks/useShareReport";
 const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
   const [date, setDate] = useState(dayjs());
   const [searchText, setSearchText] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
   const { items, toggleConsumedFoodId, toggleOpenedGroupId } = useFoodItems({
     date,
     searchText,
   });
   const { shareReport } = useShareReport();
-  const [isSearching, setIsSearching] = useState(false);
 
   const onItemPress = useCallback(
     (item: PressableFoodItem) => {
