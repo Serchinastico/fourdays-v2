@@ -1,8 +1,14 @@
 {
   "name": "fourdays",
-  "version": "1.0.0",
+  "version": "1.0.18",
   "main": "./src/index.ts",
   "scripts": {
+    "build:android": "eas build --platform android",
+    "build:android:local": "eas build --platform android --local",
+    "build:ios": "eas build --platform ios",
+    "build:ios:local": "eas build --platform ios --local",
+    "submit:android": "eas submit --platform android --latest",
+    "submit:ios": "eas submit --platform ios --latest",
     "lint": "run-s lint:expo lint:eslint",
     "lint:expo": "expo-doctor",
     "lint:eslint": "eslint \"**/*.{ts,tsx}\" --fix",

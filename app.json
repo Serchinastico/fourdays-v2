@@ -13,7 +13,8 @@
     },
     "icon": "./assets/icon.png",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fourdays.app"
     },
     "name": "fourdays",
     "orientation": "portrait",
@@ -34,7 +35,7 @@
       "resizeMode": "contain"
     },
     "userInterfaceStyle": "light",
-    "version": "1.0.0",
+    "version": "1.0.18",
     "web": {
       "favicon": "./assets/favicon.png"
     }
