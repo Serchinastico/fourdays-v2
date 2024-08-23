@@ -13,10 +13,626 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/setup/SetupScreen.tsx:52
+#: src/features/setup/SetupScreen.tsx:61
 msgid "Accept"
 msgstr "Aceptar"
 
-#: src/features/setup/SetupScreen.tsx:15
+#: src/core/hooks/useImagePicker.ts:21
+msgid "Access to your camera or media library is required to pick a picture"
+msgstr "Es necesario acceso a la cámara o a la galería para guardar nuevos alimentos con foto"
+
+#: src/domain/food/models/food.ts:87
+msgid "Alfalfa"
+msgstr "Alfalfa"
+
+#: src/domain/food/models/food.ts:171
+msgid "Anchovy"
+msgstr "Anchoas / Boquerones"
+
+#: src/domain/food/models/food.ts:648
+msgid "Apple"
+msgstr "Manzana"
+
+#: src/domain/food/models/food.ts:843
+msgid "Apricot"
+msgstr "Albaricoque"
+
+#: src/domain/food/models/food.ts:78
+msgid "Artichoke"
+msgstr "Alcachofa"
+
+#: src/domain/food/models/food.ts:357
+msgid "Asparagus"
+msgstr "Espárragos"
+
+#: src/features/tracker/hooks/useFoodItems.ts:112
+msgid "Available"
+msgstr "Disponible"
+
+#: src/features/tracker/hooks/useFoodItems.ts:111
+msgid "Available in 1 day"
+msgstr "Disponible en 1 día"
+
+#: src/features/tracker/hooks/useFoodItems.ts:109
+msgid "Available in 2 days"
+msgstr "Disponible en 2 días"
+
+#: src/features/tracker/hooks/useFoodItems.ts:107
+msgid "Available in 3 days"
+msgstr "Disponible en 3 días"
+
+#: src/features/tracker/hooks/useFoodItems.ts:105
+msgid "Available in 4 days"
+msgstr "Disponible en 4 días"
+
+#: src/domain/food/models/food.ts:63
+msgid "Avocado"
+msgstr "Aguacate"
+
+#: src/domain/food/models/food.ts:504
+msgid "Banana"
+msgstr "Plátano"
+
+#: src/domain/food/models/food.ts:783
+msgid "Bass"
+msgstr "Lubina"
+
+#: src/domain/food/models/food.ts:666
+msgid "Beans"
+msgstr "Judías"
+
+#: src/domain/food/models/food.ts:342
+msgid "Belgian endive"
+msgstr "Endibia belga"
+
+#: src/domain/food/models/food.ts:102
+msgid "Blueberries"
+msgstr "Arándanos"
+
+#: src/domain/food/models/food.ts:180
+msgid "Broccoli"
+msgstr "Brócoli"
+
+#: src/domain/food/models/food.ts:300
+msgid "Brussels sprouts"
+msgstr "Coles de Bruselas"
+
+#: src/domain/food/models/food.ts:285
+msgid "Cabbage"
+msgstr "Repollo"
+
+#: src/features/createFood/CreateFoodScreen.tsx:43
+msgid "Camera is unavailable in this device"
+msgstr "La cámara no está disponible en este dispotivo"
+
+#: src/core/hooks/useImagePicker.ts:33
+msgid "Camera unavailable"
+msgstr "Cámara no dispnible"
+
+#: src/domain/food/models/food.ts:642
+msgid "Cantaloupe"
+msgstr "Melón"
+
+#: src/domain/food/models/food.ts:276
+msgid "Carrot"
+msgstr "Zanahoria"
+
+#: src/domain/food/models/food.ts:315
+msgid "Cauliflower"
+msgstr "Coliflor"
+
+#: src/domain/food/models/food.ts:54
+msgid "Chard"
+msgstr "Acelgas"
+
+#: src/domain/food/models/food.ts:819
+msgid "Cheese"
+msgstr "Queso"
+
+#: src/domain/food/models/food.ts:252
+msgid "Cherry"
+msgstr "Cerezas"
+
+#: src/domain/food/models/food.ts:528
+msgid "Chicken"
+msgstr "Pollo"
+
+#: src/domain/food/models/food.ts:588
+msgid "Chickpeas"
+msgstr "Garbanzos"
+
+#: src/domain/food/models/food.ts:93
+msgid "Clams"
+msgstr "Almejas"
+
+#: src/domain/food/models/food.ts:144
+msgid "Cockles"
+msgstr "Berberechos"
+
+#: src/features/createFood/CreateFoodScreen.tsx:192
+msgid "Cocoa Powder"
+msgstr "Cacao en polvo"
+
+#: src/domain/food/models/food.ts:126
+msgid "Cod"
+msgstr "Bacalao"
+
+#: src/features/setup/components/Header.tsx:27
 msgid "Configuration"
 msgstr "Configuración"
+
+#: src/features/tracker/hooks/useFoodItems.ts:82
+msgid "Consumed food"
+msgstr "Comida consumida"
+
+#: src/domain/food/models/food.ts:660
+msgid "Corn"
+msgstr "Maíz"
+
+#: src/domain/food/models/food.ts:204
+msgid "Crab"
+msgstr "Cangrejo"
+
+#: src/domain/food/models/food.ts:693
+msgid "Cranberry beans"
+msgstr "Frijoles"
+
+#: src/features/createFood/CreateFoodScreen.tsx:204
+#: src/features/createGroup/CreateGroupScreen.tsx:70
+msgid "Create"
+msgstr "Crear"
+
+#: src/features/createFood/CreateFoodScreen.tsx:105
+msgid "Create food"
+msgstr "Crear comida"
+
+#: src/features/createGroup/CreateGroupScreen.tsx:45
+msgid "Create group"
+msgstr "Crear grupo"
+
+#: src/ui/FoodList/item/CreateGroup.tsx:13
+msgid "Create Group"
+msgstr "Crear Grupo"
+
+#: src/domain/food/models/food.ts:552
+msgid "Cucumber"
+msgstr "Pepino"
+
+#: src/domain/food/models/food.ts:261
+msgid "Custard apple"
+msgstr "Chirimoya"
+
+#: src/features/setup/hooks/useFoodItems.ts:69
+msgid "Deselect all the items you have food intolerance or causes you allergic reactions."
+msgstr "Desmarca la comida que no puedes comer acorde a tus intolerancias y la dieta que estés siguiendo."
+
+#: src/features/createFood/CreateFoodScreen.tsx:113
+#: src/features/createFood/CreateFoodScreen.tsx:130
+msgid "e.g. Cocoa Powder"
+msgstr "e.g. Cacao en polvo"
+
+#: src/features/createGroup/CreateGroupScreen.tsx:54
+msgid "e.g. Fats"
+msgstr "e.g. Grasas"
+
+#: src/domain/food/models/food.ts:804
+msgid "Egg"
+msgstr "Huevo"
+
+#: src/domain/food/models/food.ts:153
+msgid "Eggplant"
+msgstr "Berenjena"
+
+#: src/domain/food/models/food.ts:333
+msgid "Endive"
+msgstr "Endibia"
+
+#: src/features/createFood/CreateFoodScreen.tsx:32
+msgid "Food created"
+msgstr "Comida creada"
+
+#: src/features/tracker/hooks/useFoodItems.ts:63
+msgid "Forbidden food"
+msgstr "Comida prohibida"
+
+#: src/features/createFood/CreateFoodScreen.tsx:37
+msgid "Fourdays has no permissions to access your pictures"
+msgstr "Fourdays no tiene permiso para acceder a tus imágenes"
+
+#: src/features/tracker/hooks/useShareReport.ts:208
+msgid "Friday"
+msgstr "Viernes"
+
+#: src/core/components/ImagePicker/ImagePickerDialog.tsx:21
+msgid "From Camera"
+msgstr "Cámara"
+
+#: src/core/components/ImagePicker/ImagePickerDialog.tsx:22
+msgid "From Media Library"
+msgstr "Galería"
+
+#: src/domain/food/models/food.ts:45
+msgid "Fruit"
+msgstr "Fruta"
+
+#: src/domain/food/models/food.ts:69
+msgid "Garlic"
+msgstr "Ajo"
+
+#: src/domain/food/models/food.ts:792
+msgid "Gilt-Head seabream"
+msgstr "Dorada"
+
+#: src/domain/food/models/food.ts:405
+msgid "Grape"
+msgstr "Uva"
+
+#: src/domain/food/models/food.ts:498
+msgid "Grapefruit"
+msgstr "Pomelo"
+
+#: src/domain/food/models/food.ts:744
+msgid "Green beans"
+msgstr "Judías verdes"
+
+#: src/features/createFood/CreateFoodScreen.tsx:110
+msgid "Group"
+msgstr "Grupo"
+
+#: src/features/createGroup/CreateGroupScreen.tsx:21
+msgid "Group created"
+msgstr "Grupo creado"
+
+#: src/domain/food/models/food.ts:627
+msgid "Hake"
+msgstr "Merluza"
+
+#: src/features/tracker/hooks/useFoodItems.ts:156
+msgid "Here you can configure the food you ate and the food you can eat."
+msgstr "Desde aquí puedes mantener un registro de lo que comes y lo que puedes comer."
+
+#: src/domain/food/models/food.ts:777
+msgid "Italian pasta"
+msgstr "Pasta italiana"
+
+#: src/domain/food/models/food.ts:348
+msgid "Kiwi"
+msgstr "Kiwi"
+
+#: src/domain/food/models/food.ts:327
+msgid "Lamb"
+msgstr "Cordero"
+
+#: src/domain/food/models/food.ts:489
+msgid "Leek"
+msgstr "Puerro"
+
+#: src/domain/food/models/food.ts:699
+msgid "Lemon"
+msgstr "Limeon"
+
+#: src/domain/food/models/food.ts:729
+msgid "Lentils"
+msgstr "Lentejas"
+
+#: src/domain/food/models/food.ts:393
+msgid "Lettuce"
+msgstr "Lechuga"
+
+#: src/domain/food/models/food.ts:705
+msgid "Lime"
+msgstr "Lima"
+
+#: src/domain/food/models/food.ts:714
+msgid "Lobster"
+msgstr "Langosta"
+
+#: src/domain/food/models/food.ts:654
+msgid "Mango"
+msgstr "Mango"
+
+#: src/domain/food/models/food.ts:306
+msgid "Medlar"
+msgstr "Níspero"
+
+#: src/features/tracker/hooks/useShareReport.ts:204
+msgid "Monday"
+msgstr "Lunes"
+
+#: src/features/tracker/hooks/useShareReport.ts:202
+msgid "Monthly report"
+msgstr "Reporte mensual"
+
+#: src/domain/food/models/food.ts:270
+msgid "Mushroom"
+msgstr "Setas"
+
+#: src/features/createFood/CreateFoodScreen.tsx:126
+#: src/features/createGroup/CreateGroupScreen.tsx:50
+msgid "Name"
+msgstr "Nombre"
+
+#: src/domain/food/models/food.ts:120
+msgid "Oat"
+msgstr "Avena"
+
+#: src/domain/food/models/food.ts:483
+msgid "Octopus"
+msgstr "Puplo"
+
+#: src/domain/food/models/food.ts:225
+msgid "Onion"
+msgstr "Cebolla"
+
+#: src/domain/food/models/food.ts:615
+msgid "Orange"
+msgstr "Naranja"
+
+#: src/domain/food/models/food.ts:609
+msgid "Oyster"
+msgstr "Ostras"
+
+#: src/domain/food/models/food.ts:849
+msgid "Papaya"
+msgstr "Papaya"
+
+#: src/domain/food/models/food.ts:597
+msgid "Paraguayan"
+msgstr "Paraguaya"
+
+#: src/domain/food/models/food.ts:537
+msgid "Parsley"
+msgstr "Perejil"
+
+#: src/domain/food/models/food.ts:633
+msgid "Peach"
+msgstr "Melocotón"
+
+#: src/domain/food/models/food.ts:543
+msgid "Pear"
+msgstr "Pera"
+
+#: src/domain/food/models/food.ts:720
+msgid "Peas"
+msgstr "Guisantes"
+
+#: src/domain/food/models/food.ts:510
+msgid "Pepper"
+msgstr "Pimiento"
+
+#: src/domain/food/models/food.ts:834
+msgid "Pineapple"
+msgstr "Piña"
+
+#: src/domain/food/models/food.ts:291
+msgid "Plum"
+msgstr "Ciruela"
+
+#: src/domain/food/models/food.ts:246
+msgid "Pork"
+msgstr "Cerdo"
+
+#: src/domain/food/models/food.ts:564
+msgid "Potato"
+msgstr "Patata"
+
+#: src/domain/food/models/food.ts:210
+msgid "Prawn"
+msgstr "Gambas"
+
+#: src/domain/food/models/food.ts:41
+msgid "Proteins"
+msgstr "Proteínas"
+
+#: src/domain/food/models/food.ts:198
+msgid "Pumpkin"
+msgstr "Calabaza"
+
+#: src/domain/food/models/food.ts:321
+msgid "Rabbit"
+msgstr "Conejo"
+
+#: src/domain/food/models/food.ts:474
+msgid "Radish"
+msgstr "Rábano"
+
+#: src/domain/food/models/food.ts:375
+msgid "Raspberry"
+msgstr "Frambuesa"
+
+#: src/domain/food/models/food.ts:108
+msgid "Rice"
+msgstr "Arroz"
+
+#: src/domain/food/models/food.ts:240
+msgid "Rye"
+msgstr "Centeno"
+
+#: src/domain/food/models/food.ts:462
+msgid "Salmon"
+msgstr "Salmón"
+
+#: src/domain/food/models/food.ts:447
+msgid "Sardines"
+msgstr "Sardinas"
+
+#: src/features/tracker/hooks/useShareReport.ts:209
+msgid "Saturday"
+msgstr "Sábado"
+
+#: src/domain/food/models/food.ts:813
+msgid "Scallops"
+msgstr "Vieiras"
+
+#: src/core/components/Header/SearchHeader.tsx:29
+msgid "Search food"
+msgstr "Buscar comida"
+
+#: src/core/components/ImagePicker/ImagePickerDialog.tsx:19
+msgid "Select an image"
+msgstr "Selecciona una imagen"
+
+#: src/domain/food/models/food.ts:438
+msgid "Semolina"
+msgstr "Sémola"
+
+#: src/domain/food/models/food.ts:429
+msgid "Sepia"
+msgstr "Sepia"
+
+#: src/features/tracker/hooks/useShareReport.ts:227
+msgid "Share monthly report"
+msgstr "Compartir reporte mensual"
+
+#: src/domain/food/models/food.ts:573
+msgid "Snapper"
+msgstr "Pargo"
+
+#: src/domain/food/models/food.ts:735
+msgid "Sole"
+msgstr "Lenguado"
+
+#: src/domain/food/models/food.ts:759
+msgid "Soy"
+msgstr "Soja"
+
+#: src/domain/food/models/food.ts:768
+msgid "Spelled wheat"
+msgstr "Trigo de espelta"
+
+#: src/domain/food/models/food.ts:366
+msgid "Spinach"
+msgstr "Espinacas"
+
+#: src/domain/food/models/food.ts:234
+msgid "Spring onion"
+msgstr "Cebolleta"
+
+#: src/domain/food/models/food.ts:798
+msgid "Squid"
+msgstr "Calamar"
+
+#: src/domain/food/models/food.ts:37
+msgid "Starches and carbohydrates"
+msgstr "Féculas e hidratos de carbono"
+
+#: src/domain/food/models/food.ts:384
+msgid "Strawberry"
+msgstr "Fresa"
+
+#: src/features/tracker/hooks/useShareReport.ts:210
+msgid "Sunday"
+msgstr "Domingo"
+
+#: src/domain/food/models/food.ts:135
+msgid "Sweet potato"
+msgstr "Batata"
+
+#: src/core/hooks/useImagePicker.ts:27
+msgid "The user canceled the selection of an image"
+msgstr "El usuario ha cancelado la selección de imagen"
+
+#: src/domain/food/models/food.ts:219
+msgid "Thistle"
+msgstr "Cardo"
+
+#: src/features/tracker/hooks/useShareReport.ts:207
+msgid "Thursday"
+msgstr "Jueves"
+
+#: src/domain/food/models/food.ts:399
+msgid "Tomato"
+msgstr "Tomate"
+
+#: src/features/tracker/components/Header.tsx:25
+msgid "Tracker"
+msgstr "Registro"
+
+#: src/domain/food/models/food.ts:411
+msgid "Trout"
+msgstr "Trucha"
+
+#: src/features/tracker/hooks/useShareReport.ts:205
+msgid "Tuesday"
+msgstr "Martes"
+
+#: src/domain/food/models/food.ts:114
+msgid "Tuna"
+msgstr "Atún"
+
+#: src/domain/food/models/food.ts:468
+msgid "Turbot"
+msgstr "Rodaballo"
+
+#: src/domain/food/models/food.ts:558
+msgid "Turkey"
+msgstr "Pavo"
+
+#: src/domain/food/models/food.ts:621
+msgid "Turnip"
+msgstr "Nabo"
+
+#: src/features/createFood/CreateFoodScreen.tsx:38
+#: src/features/createFood/CreateFoodScreen.tsx:44
+msgid "Unable to pick an image"
+msgstr "Fallo al elegir imagen"
+
+#: src/domain/food/models/food.ts:423
+msgid "Veal"
+msgstr "Ternera"
+
+#: src/domain/food/models/food.ts:33
+msgid "Vegetables"
+msgstr "Verduras y hortalizas"
+
+#: src/domain/food/models/food.ts:162
+msgid "Watercress"
+msgstr "Berro"
+
+#: src/domain/food/models/food.ts:456
+msgid "Watermelon"
+msgstr "Sandía"
+
+#: src/features/tracker/hooks/useShareReport.ts:206
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: src/domain/food/models/food.ts:417
+msgid "Wheat"
+msgstr "Trigo"
+
+#: src/domain/food/models/food.ts:675
+msgid "White beans"
+msgstr "Judías blancas"
+
+#: src/domain/food/models/food.ts:519
+msgid "Whiting"
+msgstr "Pescadilla"
+
+#: src/domain/food/models/food.ts:753
+msgid "Wholemeal bread"
+msgstr "Pan integral"
+
+#: src/domain/food/models/food.ts:603
+msgid "Yam"
+msgstr "Ñame"
+
+#: src/domain/food/models/food.ts:684
+msgid "Yellow beans"
+msgstr "Judías amarillas"
+
+#: src/domain/food/models/food.ts:825
+msgid "Yogurt"
+msgstr "Yogur"
+
+#: src/features/createFood/CreateFoodScreen.tsx:31
+msgid "You have added a new food item to your collection"
+msgstr "Has añadido un nuevo alimento a tu colección"
+
+#: src/features/createGroup/CreateGroupScreen.tsx:20
+msgid "You have created a new group"
+msgstr "Has creado un nuevo grupo"
+
+#: src/domain/food/models/food.ts:189
+msgid "Zucchini"
+msgstr "Calabacín"
