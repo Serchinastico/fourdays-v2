@@ -2,7 +2,7 @@ import { FlashList } from "@shopify/flash-list";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Item } from "./item";
-import { FoodItem } from "./item/types";
+import { FoodItem, PressableFoodItem } from "./item/types";
 
 interface Props {
   items: FoodItem[];
@@ -13,7 +13,7 @@ interface Props {
    * food item inside the row was pressed.
    */
   onFoodPress: (foodId: string) => Promise<void> | void;
-  onItemPress: (item: FoodItem) => Promise<void> | void;
+  onItemPress: (item: PressableFoodItem) => Promise<void> | void;
 }
 
 export const FoodList = ({ items, onFoodPress, onItemPress }: Props) => {
@@ -53,6 +53,8 @@ export const FoodList = ({ items, onFoodPress, onItemPress }: Props) => {
                 onPress={(foodId) => onFoodPress(foodId)}
               />
             );
+          case "section":
+            return <Item.Section item={item} key={`section_${item.text}`} />;
         }
       }}
     />

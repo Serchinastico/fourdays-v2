@@ -1,6 +1,6 @@
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { FoodList } from "@app/ui/FoodList";
-import { FoodItem } from "@app/ui/FoodList/item/types";
+import { PressableFoodItem } from "@app/ui/FoodList/item/types";
 import { SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
 import dayjs from "dayjs";
 import React, { useCallback, useState } from "react";
@@ -11,21 +11,20 @@ import useFoodItems from "./hooks/useFoodItems";
 
 const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
   const [date, setDate] = useState(dayjs());
+  const [searchText, setSearchText] = useState("");
   const { items, toggleConsumedFoodId, toggleOpenedGroupId } = useFoodItems({
     date,
+    searchText,
   });
-  const [searchText, setSearchText] = useState("");
   const [isSearching, setIsSearching] = useState(false);
 
   const onItemPress = useCallback(
-    (item: FoodItem) => {
+    (item: PressableFoodItem) => {
       switch (item.tag) {
         case "group":
           toggleOpenedGroupId(item.groupId);
           break;
         case "create_group":
-        case "description":
-        case "row":
       }
     },
     [toggleOpenedGroupId]
@@ -35,7 +34,10 @@ const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
     <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
       <Header
         isSearching={isSearching}
-        onCancelSearchPress={() => setIsSearching(false)}
+        onCancelSearchPress={() => {
+          setSearchText("");
+          setIsSearching(false);
+        }}
         onSearchPress={() => setIsSearching(true)}
         onSearchTextChange={setSearchText}
         onSettingsPress={() =>

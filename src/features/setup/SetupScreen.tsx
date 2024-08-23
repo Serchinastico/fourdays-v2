@@ -1,6 +1,6 @@
 import { RootScreenProps } from "@app/core/navigation/routes";
 import { FoodList } from "@app/ui/FoodList";
-import { FoodItem } from "@app/ui/FoodList/item/types";
+import { PressableFoodItem } from "@app/ui/FoodList/item/types";
 import { t } from "@lingui/macro";
 import { Button, SafeAreaView, SafeAreaViewEdges } from "@madeja-studio/telar";
 import { useCallback } from "react";
@@ -16,7 +16,7 @@ const SetupScreen = ({ navigation, route }: RootScreenProps<"setup">) => {
   const { bottom } = useSafeAreaInsets();
   const { items, toggleBannedFoodId, toggleOpenedGroupId } = useFoodItems();
 
-  const onItemPress = useCallback((item: FoodItem) => {
+  const onItemPress = useCallback((item: PressableFoodItem) => {
     switch (item.tag) {
       case "create_group":
         navigation.navigate("createGroup");
@@ -24,8 +24,6 @@ const SetupScreen = ({ navigation, route }: RootScreenProps<"setup">) => {
       case "group":
         toggleOpenedGroupId(item.groupId);
         break;
-      case "description":
-      case "row":
     }
   }, []);
 

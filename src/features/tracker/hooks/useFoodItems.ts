@@ -1,4 +1,5 @@
 import { atoms } from "@app/core/storage/state";
+import { fuzzySearch } from "@app/core/utils/fuzzySearch";
 import { useFood } from "@app/domain/food/hooks/useFood";
 import { useFoodGroup } from "@app/domain/food/hooks/useFoodGroup";
 import { GroupId } from "@app/domain/food/models/food";
@@ -9,7 +10,7 @@ import {
   SelectableFood,
 } from "@app/ui/FoodList/item/types";
 import { t } from "@lingui/macro";
-import { toggleItem } from "@madeja-studio/cepillo";
+import { groupBy, toggleItem } from "@madeja-studio/cepillo";
 import dayjs from "dayjs";
 import { useAtomValue } from "jotai";
 import { useCallback, useMemo, useState } from "react";
@@ -21,9 +22,10 @@ const CONSUMED_FOOD_GROUP_ID = "consumed_food";
 
 interface Props {
   date: dayjs.Dayjs;
+  searchText: string;
 }
 
-const useFoodItems = ({ date }: Props) => {
+const useFoodItems = ({ date, searchText }: Props) => {
   const [openedGroupIds, setOpenedGroupIds] = useState<GroupId[]>([]);
   const bannedFoodIds = useAtomValue(atoms.bannedFoodIds);
   const {
@@ -91,7 +93,42 @@ const useFoodItems = ({ date }: Props) => {
     return [header, ...selectableFoodToFoodRows(consumedFood)];
   }, [openedGroupIds, allFood, consumedFoodIdsOnDate]);
 
+  const getSearchItems = useCallback((): FoodItem[] => {
+    const filteredFood = fuzzySearch({
+      items: allFood,
+      key: "name",
+      search: searchText,
+    });
+
+    const groupedFood = groupBy(filteredFood, (food) => {
+      if (consumedFoodIdsOnDate.includes(food.id))
+        return t`Available in 4 days`;
+      else if (consumedFoodIdsOnDateMinusOne.includes(food.id))
+        return t`Available in 3 days`;
+      else if (consumedFoodIdsOnDateMinusTwo.includes(food.id))
+        return t`Available in 2 days`;
+      else if (consumedFoodIdsOnDateMinusThree.includes(food.id))
+        return t`Available in 1 day`;
+      else return t`Available`;
+    });
+
+    return Object.entries(groupedFood)
+      .sort(([aKey], [bKey]) => aKey.localeCompare(bKey))
+      .flatMap(([section, foodList]) => {
+        return [
+          { tag: "section", text: section },
+          ...selectableFoodToFoodRows(
+            foodList.map((food) => ({ ...food, isSelected: true }))
+          ),
+        ];
+      });
+  }, [allFood, consumedFoodItems, searchText]);
+
   const items: FoodItem[] = useMemo(() => {
+    if (searchText.trim() !== "") {
+      return getSearchItems();
+    }
+
     const foodGroups: FoodItem[] = allGroups.flatMap((group) => {
       const header: GroupItem = {
         groupId: group.id,
@@ -123,11 +160,13 @@ const useFoodItems = ({ date }: Props) => {
       ...consumedFoodItems,
     ];
   }, [
-    openedGroupIds,
-    forbiddenFoodItems,
-    consumedFoodItems,
     bannedFoodIds,
+    consumedFoodItems,
     forbiddenFoodIds,
+    forbiddenFoodItems,
+    getSearchItems,
+    openedGroupIds,
+    searchText,
   ]);
 
   const toggleConsumedFoodId = useCallback(
