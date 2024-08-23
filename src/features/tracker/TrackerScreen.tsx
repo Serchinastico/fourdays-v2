@@ -14,6 +14,8 @@ const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
   const { items, toggleConsumedFoodId, toggleOpenedGroupId } = useFoodItems({
     date,
   });
+  const [searchText, setSearchText] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
 
   const onItemPress = useCallback(
     (item: FoodItem) => {
@@ -32,19 +34,25 @@ const TrackerScreen = ({ navigation }: RootScreenProps<"tracker">) => {
   return (
     <SafeAreaView edges={SafeAreaViewEdges.NoBottom}>
       <Header
-        onSearchPress={() => {}}
+        isSearching={isSearching}
+        onCancelSearchPress={() => setIsSearching(false)}
+        onSearchPress={() => setIsSearching(true)}
+        onSearchTextChange={setSearchText}
         onSettingsPress={() =>
           navigation.navigate("setup", { isInitialSetup: false })
         }
         onSharePress={() => {}}
+        searchText={searchText}
       />
 
-      <DatePickerBar
-        date={date}
-        onNextDatePress={() => setDate((date) => date.add(1, "day"))}
-        onPreviousDatePress={() => setDate((date) => date.subtract(1, "day"))}
-        onSelectDate={(date) => setDate(date)}
-      />
+      {!isSearching && (
+        <DatePickerBar
+          date={date}
+          onNextDatePress={() => setDate((date) => date.add(1, "day"))}
+          onPreviousDatePress={() => setDate((date) => date.subtract(1, "day"))}
+          onSelectDate={(date) => setDate(date)}
+        />
+      )}
 
       <FoodList
         items={items}
