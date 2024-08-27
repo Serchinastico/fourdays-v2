@@ -2,7 +2,7 @@
   "expo": {
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#F2F7F5",
         "foregroundImage": "./assets/adaptive-icon.png"
       }
     },
@@ -30,12 +30,12 @@
     ],
     "slug": "four-days",
     "splash": {
-      "backgroundColor": "#ffffff",
+      "backgroundColor": "#F2F7F5",
       "image": "./assets/splash.png",
       "resizeMode": "contain"
     },
     "userInterfaceStyle": "light",
-    "version": "1.0.18",
+    "version": "1.0.19",
     "web": {
       "favicon": "./assets/favicon.png"
     }
