@@ -13,7 +13,7 @@
     },
     "icon": "./assets/icon.png",
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.fourdays.app"
     },
     "name": "fourdays",
