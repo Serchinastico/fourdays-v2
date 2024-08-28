@@ -33,6 +33,7 @@
     "dayjs": "^1",
     "expo": "~51.0.31",
     "expo-image-picker": "^15",
+    "expo-print": "^13",
     "expo-sharing": "^12",
     "expo-splash-screen": "^0.27.5",
     "expo-status-bar": "^1",
@@ -40,10 +41,10 @@
     "jotai": "^2",
     "react": "18.2.0",
     "react-native": "0.74.5",
+    "react-native-gesture-handler": "^2",
     "react-native-screens": "^3",
     "twrnc": "^4",
-    "use-async-effect": "^2",
-    "expo-print": "^13"
+    "use-async-effect": "^2"
   },
   "devDependencies": {
     "@babel/core": "^7",
