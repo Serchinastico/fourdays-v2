@@ -61,6 +61,7 @@
     "eslint-plugin-lingui": "^0.3.0",
     "eslint-plugin-perfectionist": "^2",
     "eslint-plugin-prettier": "^5",
+    "expo-dev-client": "^4",
     "expo-doctor": "^1",
     "lefthook": "^1",
     "npm-run-all": "^4",
