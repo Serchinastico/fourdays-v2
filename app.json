@@ -35,7 +35,7 @@
       "resizeMode": "contain"
     },
     "userInterfaceStyle": "light",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "web": {
       "favicon": "./assets/favicon.png"
     }
