@@ -1,4 +1,5 @@
 import "./dayjs";
+import "./translations";
 import "./tw";
 
 /**
