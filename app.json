@@ -26,6 +26,18 @@
           "cameraPermission": "The app accesses your camera to let you pick your online avatar.",
           "photosPermission": "The app accesses your photos to add new ingredients to your food library."
         }
+      ],
+      [
+        "@react-native-community/datetimepicker",
+        {
+          "android": {
+            "datePicker": {
+              "colorAccent": {
+                "light": "#52BD76"
+              }
+            }
+          }
+        }
       ]
     ],
     "slug": "four-days",

@@ -10,6 +10,7 @@ export const ModalHeader = ({ onClosePress, title }: Props) => {
   return (
     <BaseHeader title={title}>
       <Button.Icon
+        color="secondary"
         hasHapticFeedback
         icon={{ family: "Feather", name: "x" }}
         onPress={onClosePress}

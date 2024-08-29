@@ -210,7 +210,6 @@ export const useShareReport = () => {
         .replace("%SEVENTH_DAY%", t`Sunday`)
         .replace("%CONTENT%", `${gapDays}\n${calendarDays}`);
 
-      console.log(renderedHtml);
       const { uri: temporaryUri } = await Print.printToFileAsync({
         html: renderedHtml,
       });

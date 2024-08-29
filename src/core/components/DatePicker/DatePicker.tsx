@@ -14,7 +14,12 @@ interface Props extends ViewProps {
 
 export const DatePicker = ({ date, onDatePick, style, ...props }: Props) => {
   const openAndroidDatePicker = useCallback(() => {
-    DateTimePickerAndroid.open({ value: date.toDate() });
+    DateTimePickerAndroid.open({
+      mode: "date",
+      negativeButton: { textColor: color.secondary },
+      positiveButton: { textColor: color.primary },
+      value: date.toDate(),
+    });
   }, []);
 
   switch (Platform.OS) {
