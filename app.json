@@ -4,7 +4,8 @@
       "adaptiveIcon": {
         "backgroundColor": "#F2F7F5",
         "foregroundImage": "./assets/adaptive-icon.png"
-      }
+      },
+      "package": "com.fourdays.app"
     },
     "extra": {
       "eas": {
