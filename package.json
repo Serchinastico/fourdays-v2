@@ -23,7 +23,7 @@
   "dependencies": {
     "@lingui/react": "^4",
     "@madeja-studio/cepillo": "^0.1.11",
-    "@madeja-studio/telar": "^0.2.26",
+    "@madeja-studio/telar": "^0.2.28",
     "@react-native-async-storage/async-storage": "^1",
     "@react-native-community/datetimepicker": "^8",
     "@react-native-picker/picker": "^2",
