@@ -39,6 +39,9 @@
             }
           }
         }
+      ],
+      [
+        "./plugins/date-time-picker-style.js"
       ]
     ],
     "slug": "four-days",
