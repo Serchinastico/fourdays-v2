@@ -23,6 +23,8 @@ import {
   useToast,
 } from "@madeja-studio/telar";
 import { Picker } from "@react-native-picker/picker";
+import * as Device from "expo-device";
+import { DeviceType } from "expo-device";
 import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
 import { Image, Text, TextInput, View } from "react-native";
@@ -149,10 +151,13 @@ const CreateFoodScreen = ({ navigation }: RootScreenProps<"createFood">) => {
               <Column style={tw`items-center`}>
                 {image ? (
                   <View
-                    style={[
-                      tw`justify-center items-center rounded-lg w-32 h-32`,
-                      { borderColor: color.warmGray[50] },
-                    ]}
+                    style={tw.style(
+                      `justify-center items-center rounded-lg w-32 h-32`,
+                      {
+                        "w-100 h-100": Device.deviceType === DeviceType.TABLET,
+                      },
+                      { borderColor: color.warmGray[50] }
+                    )}
                   >
                     <Image
                       source={{ uri: image.data.uri }}
@@ -168,10 +173,13 @@ const CreateFoodScreen = ({ navigation }: RootScreenProps<"createFood">) => {
                   </View>
                 ) : (
                   <View
-                    style={[
-                      tw`justify-center items-center border-dashed border rounded-lg w-32 h-32`,
-                      { borderColor: color.warmGray[50] },
-                    ]}
+                    style={tw.style(
+                      `justify-center items-center border-dashed border rounded-lg w-32 h-32`,
+                      {
+                        "w-100 h-100": Device.deviceType === DeviceType.TABLET,
+                      },
+                      { borderColor: color.warmGray[50] }
+                    )}
                   >
                     <VectorIcon
                       color={color.warmGray[50]}

@@ -16,7 +16,9 @@ const ImagePickerDialog = ({
   return (
     <Dialog {...props}>
       <Column>
-        <Text style={tw`text-xl font-medium mb-6`}>{t`Select an image`}</Text>
+        <Text
+          style={tw`text-xl font-medium mb-6 mr-10`}
+        >{t`Select an image`}</Text>
 
         <Button onPress={onFromCamera} style={tw`mb-4`} text={t`From Camera`} />
         <Button onPress={onFromLibrary} text={t`From Media Library`} />
