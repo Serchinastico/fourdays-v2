@@ -5,6 +5,7 @@
         "backgroundColor": "#F2F7F5",
         "foregroundImage": "./assets/adaptive-icon.png"
       },
+      "softwareKeyboardLayoutMode": "pan",
       "package": "com.fourdays.app"
     },
     "extra": {
