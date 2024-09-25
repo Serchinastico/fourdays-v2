@@ -1,5 +1,8 @@
 {
   "expo": {
+    "androidStatusBar": {
+      "barStyle": "dark-content"
+    },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#F2F7F5",
