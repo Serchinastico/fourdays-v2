@@ -25,7 +25,7 @@
     "@madeja-studio/cepillo": "^0.1.14",
     "@madeja-studio/telar": "^0.2.33",
     "@react-native-async-storage/async-storage": "^1",
-    "@react-native-community/datetimepicker": "8.0.1",
+    "@react-native-community/datetimepicker": "8.2.0",
     "@react-native-picker/picker": "^2",
     "@react-navigation/native": "^6",
     "@react-navigation/native-stack": "^6",
